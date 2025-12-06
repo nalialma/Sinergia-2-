@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinergia Constructora - Desarrollos Inmobiliarios Premium en Salta</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-green: #55A203;
+            --primary-light-green: #8CD51D;
+            --secondary-orange: #FC9E07;
+            --accent-yellow: #F8EF0C;
+            --dark-bg: #0a0a0a;
+            --dark-alt: #1a1a1a;
+            --light-text: #f8f8f6;
+            --gray-text: #e3e3e3;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            font-family: 'Open Sans', sans-serif;
+            background: var(--dark-bg);
+            color: var(--gray-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* BORDES ANIMADOS */
+        .animated-border {
+            position: fixed;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .animated-border-left {
+            left: 0;
+            background: linear-gradient(180deg, var(--primary-green) 0%, transparent 50%, var(--primary-green) 100%);
+            animation: borderFlow 6s linear infinite;
+            box-shadow: 0 0 20px rgba(85, 162, 3, 0.5);
+        }
+
+        .animated-border-right {
+            right: 0;
+            background: linear-gradient(180deg, var(--secondary-orange) 0%, transparent 50%, var(--secondary-orange) 100%);
+            animation: borderFlowReverse 6s linear infinite;
+            box-shadow: 0 0 20px rgba(252, 158, 7, 0.5);
+        }
+
+        @keyframes borderFlow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes borderFlowReverse {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* SPLASH SCREEN */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg), var(--dark-alt));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-logo-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            animation: pulseBG 3s infinite;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes pulseBG {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(252, 158, 7, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(252, 158, 7, 0); }
+        }
+
+        .splash-logo {
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: drop-shadow(0 10px 30px rgba(252, 158, 7, 0.5));
+            animation: zoomIn 1s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .splash-house {
+            width: 120px;
+            height: 120px;
+            margin: 2rem 0;
+        }
+
+        .splash-house svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 5px 15px rgba(252, 158, 7, 0.4));
+        }
+
+        .loading-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2rem;
+            color: var(--secondary-orange);
+            text-shadow: 0 0 15px rgba(252, 158, 7, 0.4);
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        /* LOGO CIRCLE */
+        .logo-circle {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 500;
+            width: 90px;
+            height: 90px;
+            background: rgba(85, 162, 3, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            animation: slideIn 0.6s ease 3s forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .logo-circle:hover {
+            background: rgba(85, 162, 3, 0.25);
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(252, 158, 7, 0.5);
+        }
+
+        .logo-circle img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        /* MENU TOGGLE */
+        .menu-toggle {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 999;
+            width: 55px;
+            height: 55px;
+            background: rgba(85, 162, 3, 0.15);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            animation: slideInRight 0.6s ease 3.2s forwards;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .menu-toggle:hover {
+            background: rgba(252, 158, 7, 0.2);
+            transform: scale(1.1);
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2.5px;
+            background: var(--secondary-orange);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(10px, -10px);
+        }
+
+        /* SIDE MENU */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 350px;
+            height: 100vh;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 998;
+            transition: right 0.4s ease;
+            border-left: 1px solid rgba(85, 162, 3, 0.2);
+            overflow-y: auto;
+            padding: 120px 0 0 0;
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .side-menu ul {
+            list-style: none;
+        }
+
+        .side-menu li {
+            border-bottom: 1px solid rgba(85, 162, 3, 0.1);
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 1.5rem 2.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .side-menu a:hover {
+            background: rgba(85, 162, 3, 0.1);
+            padding-left: 3.5rem;
+            color: var(--secondary-orange);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.7) 50%, rgba(10, 10, 10, 0.8) 100%);
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero.slide-1::before { background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
+        .hero.slide-2::before { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
+        .hero.slide-3::before { background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
+        .hero.slide-4::before { background-image: url('https://images.unsplash.com/photo-1512216835268-4b5b5a0d9c1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: clamp(2rem, 5vw, 4rem);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-projects {
+            width: 70%;
+        }
+
+        .projects-wrapper {
+            position: relative;
+            height: clamp(250px, 60vh, 450px);
+            display: flex;
+            align-items: center;
+        }
+
+        .project-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .project-item.active {
+            opacity: 1;
+        }
+
+        .project-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-location {
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: rgba(252, 158, 7, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .project-type {
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+            color: rgba(229, 229, 229, 0.7);
+            font-weight: 500;
+        }
+
+        .project-title {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 900;
+            font-size: clamp(3.5rem, 16vw, 9.5rem);
+            line-height: 1;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 0 20px 60px rgba(0, 0, 0, 0.98), 0 0 40px rgba(0, 0, 0, 0.9);
+            word-spacing: 9999px;
+            margin: 0;
+            padding: 0;
+            letter-spacing: -3px;
+        }
+
+        .project-title span {
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, var(--primary-light-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-nav-button {
+            position: absolute;
+            right: clamp(1.5rem, 4vw, 3rem);
+            top: 50%;
+            transform: translateY(-50%);
+            width: clamp(45px, 6vw, 55px);
+            height: clamp(180px, 55vh, 340px);
+            background: rgba(252, 158, 7, 0.2);
+            border: 2px solid rgba(252, 158, 7, 0.6);
+            border-radius: 10px;
+            backdrop-filter: blur(15px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            z-index: 10;
+            font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+            color: var(--secondary-orange);
+            box-shadow: 0 8px 32px rgba(252, 158, 7, 0.2);
+        }
+
+        .hero-nav-button:hover {
+            background: rgba(252, 158, 7, 0.35);
+            border-color: var(--secondary-orange);
+            box-shadow: 0 12px 50px rgba(252, 158, 7, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* ANIMATED LETTERS */
+        .animated-letter {
+            display: inline-block;
+            animation: letterBounce 0.6s ease-out forwards;
+        }
+
+        @keyframes letterBounce {
+            0% { opacity: 0; transform: translateY(25px) scale(0.7); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* CONTAINER & SECTIONS */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: clamp(4rem, 10vw, 10rem) 2rem;
+            position: relative;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10,10,10,0.93) 0%, rgba(26,26,26,0.9) 100%);
+            z-index: 0;
+        }
+
+        section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(2rem, 6vw, 4.5rem);
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 3.5rem;
+            letter-spacing: -2px;
+            line-height: 1.3;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+        }
+
+        .section-title span {
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, var(--primary-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ABOUT */
+        .about {
+            background-image: url('https://i.pinimg.com/736x/62/ec/93/62ec935317ff7672b6cf363ce8d54dbe.jpg');
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(85, 162, 3, 0.4);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.8rem);
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .about-content p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            color: var(--gray-text);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* GALLERY */
+        .galeria {
+            background-image: url('https://i.pinimg.com/736x/99/6b/23/996b23d4a03f17c968633eaf2917ceeb.jpg');
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.06);
+            box-shadow: 0 25px 60px rgba(85, 162, 3, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15) rotate(3deg);
+        }
+
+        /* FEATURED PROJECTS */
+        .destacados {
+            background-image: url('https://i.pinimg.com/736x/d3/3f/57/d33f572bdd25c39a53ababc75b886cc0.jpg');
+        }
+
+        .featured-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.08);
+            box-shadow: 0 30px 70px rgba(85, 162, 3, 0.5);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.15) rotate(3deg);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            padding: 2rem 1.5rem 1.5rem;
+            color: white;
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-overlay h3 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-overlay p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* WHY SECTION */
+        .por-que {
+            background-image: url('https://i.pinimg.com/736x/fa/3d/0e/fa3d0e8f8c5e386b18169a50ea58dde8.jpg');
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .why-card {
+            padding: 2.5rem;
+            background: rgba(85, 162, 3, 0.08);
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .why-card:hover {
+            background: rgba(85, 162, 3, 0.18);
+            border-color: var(--secondary-orange);
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(85, 162, 3, 0.4);
+        }
+
+        .why-card h3 {
+            color: var(--secondary-orange);
+            margin-bottom: 1.2rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .why-card p {
+            color: var(--gray-text);
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+        }
+
+        /* CONTACT */
+        .contacto {
+            background-image: url('https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg');
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(85, 162, 3, 0.15), rgba(252, 158, 7, 0.08));
+            border-left: 4px solid var(--secondary-orange);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(135deg, rgba(85, 162, 3, 0.25), rgba(252, 158, 7, 0.18));
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(85, 162, 3, 0.3);
+        }
+
+        .contact-item h4 {
+            color: var(--light-text);
+            margin-bottom: 0.7rem;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+        }
+
+        .contact-item p {
+            color: var(--gray-text);
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(0.9rem, 1.2vw, 0.95rem);
+        }
+
+        .contact-item a {
+            color: var(--secondary-orange);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-light-green);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            color: var(--light-text);
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            background: rgba(85, 162, 3, 0.08);
+            border-radius: 8px;
+            color: var(--gray-text);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-orange);
+            background: rgba(85, 162, 3, 0.12);
+            box-shadow: 0 0 0 3px rgba(252, 158, 7, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .btn-submit {
+            padding: 1.2rem 2.8rem;
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, #fd8f00 100%);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 50px;
+            font-weight: 800;
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(252, 158, 7, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 45px rgba(252, 158, 7, 0.5);
+        }
+
+        /* FOOTER */
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 1px solid rgba(85, 162, 3, 0.2);
+            padding: 4rem 2rem 2rem;
+            color: var(--gray-text);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--secondary-orange);
+            margin-bottom: 1.2rem;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .footer-section p {
+            font-family: 'Open Sans', sans-serif;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a {
+            display: block;
+            color: var(--gray-text);
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            font-family: 'Open Sans', sans-serif;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(85, 162, 3, 0.2);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #25D366, #20BA58);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.2rem;
+            text-decoration: none;
+            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.5);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.15) rotate(15deg);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.7);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .hero-projects {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: clamp(3rem, 6vw, 5rem) 1.5rem;
+            }
+
+            .hero-container {
+                padding: clamp(1.5rem, 3vw, 2.5rem);
+            }
+
+            .section-title {
+                font-size: clamp(1.6rem, 5vw, 3rem);
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .gallery-grid,
+            .featured-projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .logo-circle {
+                width: 75px;
+                height: 75px;
+                top: 20px;
+                left: 20px;
+            }
+
+            .logo-circle img {
+                width: 55px;
+                height: 55px;
+            }
+
+            .menu-toggle {
+                width: 55px;
+                height: 55px;
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 2.5rem 1rem;
+            }
+
+            .hero-container {
+                padding: clamp(1rem, 2vw, 1.5rem);
+            }
+
+            .projects-wrapper {
+                height: clamp(200px, 45vh, 320px);
+            }
+
+            .section-title {
+                font-size: clamp(1.4rem, 4.5vw, 2.5rem);
+            }
+
+            .about-image {
+                max-width: 220px;
+                margin: 0 auto;
+            }
+
+            .gallery-grid,
+            .featured-projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .contact-item {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BORDES ANIMADOS -->
+<div class="animated-border animated-border-left"></div>
+<div class="animated-border animated-border-right"></div>
+
+<!-- SPLASH SCREEN -->
+<div class="splash-screen" id="splashScreen">
+    <div class="splash-logo-circle">
+        <img src="https://i.pinimg.com/736x/17/ab/b9/17abb909c0d4c30191b969f6cd81d533.jpg" alt="Sinergia Logo" class="splash-logo">
+    </div>
+    
+    <div class="splash-house">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <style>
+                    @keyframes buildHouse {
+                        0% { stroke-dashoffset: 200; stroke-dasharray: 200; }
+                        50% { stroke-dasharray: 200; }
+                        100% { stroke-dashoffset: 0; stroke-dasharray: 200; }
+                    }
+                    .house-roof { animation: buildHouse 2s ease-in-out infinite; }
+                    .house-wall { animation: buildHouse 2.5s ease-in-out infinite; }
+                    .house-door { animation: buildHouse 3s ease-in-out infinite; }
+                </style>
+            </defs>
+            <path class="house-roof" d="M 30 60 L 50 30 L 70 60" fill="none" stroke="#FC9E07" stroke-width="3"/>
+            <rect class="house-wall" x="30" y="60" width="40" height="30" fill="none" stroke="#55A203" stroke-width="3"/>
+            <rect class="house-door" x="42" y="70" width="16" height="20" fill="none" stroke="#FC9E07" stroke-width="2"/>
+        </svg>
+    </div>
+
+    <div class="loading-text" id="loadingText">0%</div>
+</div>
+
+<!-- LOGO -->
+<a href="#inicio" class="logo-circle">
+    <img src="https://i.pinimg.com/736x/17/ab/b9/17abb909c0d4c30191b969f6cd81d533.jpg" alt="Logo">
+</a>
+
+<!-- MENU TOGGLE -->
+<button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<!-- SIDE MENU -->
+<nav class="side-menu" id="sideMenu">
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#por-que">¿Por Qué?</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero slide-1" id="inicio">
+    <div class="hero-container">
+        <div class="hero-projects">
+            <div class="projects-wrapper">
+                <div class="project-item active">
+                    <div class="project-info">
+                        <div class="project-location">Zona Sur, Salta</div>
+                        <div class="project-type">Residencial Premium</div>
+                    </div>
+                    <h2 class="project-title">EKO<br><span>DISTRITO</span></h2>
+                </div>
+                <div class="project-item">
+                    <div class="project-info">
+                        <div class="project-location">Área Central</div>
+                        <div class="project-type">Residencial Andino</div>
+                    </div>
+                    <h2 class="project-title">RESIDENCIAL<br><span>ANDINO</span></h2>
+                </div>
+                <div class="project-item">
+                    <div class="project-info">
+                        <div class="project-location">Downtown Premium</div>
+                        <div class="project-type">Torre Urbana</div>
+                    </div>
+                    <h2 class="project-title"><span>TORRES</span><br>PREMIUM</h2>
+                </div>
+                <div class="project-item">
+                    <div class="project-info">
+                        <div class="project-location">Zona Este</div>
+                        <div class="project-type">Lofts Contemporáneos</div>
+                    </div>
+                    <h2 class="project-title">LOFTS<br><span>URBANOS</span></h2>
+                </div>
+            </div>
+            <button class="hero-nav-button" id="nextProject" title="Siguiente">↓</button>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre-nosotros">
+    <div class="container">
+        <h2 class="section-title" id="titleAbout">Sobre <span>Sinergia</span></h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="https://i.pinimg.com/736x/62/ec/93/62ec935317ff7672b6cf363ce8d54dbe.jpg" alt="Sinergia">
+            </div>
+            <div class="about-content">
+                <h2>Raíces y Futuro</h2>
+                <p>Sinergia es la unidad de desarrollo y construcción nacida directamente del Corralón Don Coco. Más que una expansión, nacimos como una respuesta para cerrar el círculo: detectamos que la mejor forma de garantizar una obra exitosa era controlando todo el proceso, desde el primer ladrillo hasta la entrega de la llave.</p>
+                <p>Somos la integración estratégica de la solidez de Don Coco con un equipo técnico especializado. Volcamos nuestros 14 años de experiencia y pasión por la construcción para asegurar que los materiales lleguen a tiempo, la calidad sea la prometida, y tu inversión sea segura.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- PROJECTS -->
+<section class="destacados" id="proyectos">
+    <div class="container">
+        <h2 class="section-title" id="titleProjects">Proyectos <span>Destacados</span></h2>
+        <div class="featured-projects-grid">
+            <div class="project-card">
+                <img src="https://i.pinimg.com/736x/99/6b/23/996b23d4a03f17c968633eaf2917ceeb.jpg" alt="Residencial">
+                <div class="project-overlay">
+                    <h3>Residencial Andino</h3>
+                    <p>Complejo residencial con vista a la Cordillera</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://i.pinimg.com/736x/d3/3f/57/d33f572bdd25c39a53ababc75b886cc0.jpg" alt="PH">
+                <div class="project-overlay">
+                    <h3>PH Urbano Sur</h3>
+                    <p>Penthouse de lujo en zona céntrica</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://i.pinimg.com/736x/fa/3d/0e/fa3d0e8f8c5e386b18169a50ea58dde8.jpg" alt="Lofts">
+                <div class="project-overlay">
+                    <h3>Lofts Contemporáneos</h3>
+                    <p>Espacios abiertos con estilo industrial</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg" alt="Sustentable">
+                <div class="project-overlay">
+                    <h3>Vivienda Sustentable</h3>
+                    <p>Construcción eco-amigable</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://i.pinimg.com/736x/a8/26/b5/a826b5964d4e76fd689820e92da2b42c.jpg" alt="Complejo">
+                <div class="project-overlay">
+                    <h3>Complejo Residencial</h3>
+                    <p>Comunidad integrada con servicios premium</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://i.pinimg.com/736x/bf/97/da/bf97da59f3a5e4b9a1e0a3f0b3c1e2d3.jpg" alt="Torre">
+                <div class="project-overlay">
+                    <h3>Torre Residencial Prime</h3>
+                    <p>Edificio de lujo con vistas panorámicas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY -->
+<section class="por-que" id="por-que">
+    <div class="container">
+        <h2 class="section-title" id="titleWhy">¿Por Qué <span>Sinergia?</span></h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <h3>🔗 Integración</h3>
+                <p>Conectamos cadena de suministro con ejecución. Garantizamos calidad y plazos comprometidos.</p>
+            </div>
+            <div class="why-card">
+                <h3>✨ Calidad</h3>
+                <p>Nos obsesionamos con el detalle. Creamos activos que aumentan su valor con el tiempo.</p>
+            </div>
+            <div class="why-card">
+                <h3>🛡️ Seguridad</h3>
+                <p>La confianza es nuestro principal activo. Tu inversión merece claridad absoluta.</p>
+            </div>
+            <div class="why-card">
+                <h3>💡 Innovación</h3>
+                <p>Optimizamos inteligentemente. Tu inversión trabajará para ti desde el día uno.</p>
+            </div>
+            <div class="why-card">
+                <h3>🏆 Maestría</h3>
+                <p>14+ años de experiencia. Supervisión técnica rigurosa en cada etapa.</p>
+            </div>
+            <div class="why-card">
+                <h3>🤝 Tu Socio</h3>
+                <p>Transparencia, cercanía, profesionalismo. Tu éxito es nuestro éxito.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contacto" id="contacto">
+    <div class="container">
+        <h2 class="section-title" id="titleContact">Ponte en <span>Contacto</span></h2>
+        <div class="contact-grid">
+            <div class="contact-items">
+                <div class="contact-item">
+                    <h4>📍 Ubicación</h4>
+                    <p>Zona Sur, Salta, Argentina</p>
+                </div>
+                <div class="contact-item">
+                    <h4>📞 Teléfono</h4>
+                    <p><a href="tel:+5493872233151">+54 9 387 2233151</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>✉️ Email</h4>
+                    <p><a href="mailto:info@sinergiadesarrolladora.com">info@sinergiadesarrolladora.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>💬 WhatsApp</h4>
+                    <p><a href="https://wa.me/5493872233151" target="_blank">Contactar por WhatsApp</a></p>
+                </div>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" name="telefono" placeholder="+54 9 387 XXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea name="mensaje" placeholder="Tu consulta..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Consulta</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Sinergia Desarrolladora</h4>
+            <p>Desarrolladora inmobiliaria comprometida con excelencia, innovación y sostenibilidad en Salta y el NOA.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Enlaces Rápidos</h4>
+            <a href="#inicio">Inicio</a>
+            <a href="#sobre-nosotros">Sobre Nosotros</a>
+            <a href="#galeria">Galería</a>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#por-que">¿Por Qué?</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="footer-section">
+            <h4>Contacto</h4>
+            <a href="tel:+5493872233151">📞 +54 9 387 2233151</a>
+            <a href="mailto:info@sinergiadesarrolladora.com">✉️ Email</a>
+            <a href="https://wa.me/5493872233151" target="_blank">💬 WhatsApp</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Sinergia. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5493872233151" class="whatsapp-btn" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    // SPLASH
+    window.addEventListener('load', () => {
+        const splash = document.getElementById('splashScreen');
+        const text = document.getElementById('loadingText');
+        let p = 0;
+        const int = setInterval(() => {
+            p += Math.random() * 18;
+            if (p >= 100) {
+                p = 100;
+                clearInterval(int);
+                text.textContent = '100%';
+                setTimeout(() => splash.classList.add('hidden'), 600);
+            }
+            text.textContent = Math.floor(p) + '%';
+        }, 90);
+    });
+
+    // MENU
+    const btn = document.getElementById('menuToggle');
+    const menu = document.getElementById('sideMenu');
+    btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        menu.classList.toggle('active');
+    });
+    menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            btn.classList.remove('active');
+            menu.classList.remove('active');
+        });
+    });
+
+    // HERO SLIDER
+    let curr = 0;
+    const items = document.querySelectorAll('.project-item');
+    const hero = document.querySelector('.hero');
+    function show(i) {
+        items.forEach((el, idx) => el.classList.toggle('active', idx === i));
+        hero.className = 'hero slide-' + (i + 1);
+        animateTitles();
+    }
+    document.getElementById('nextProject').addEventListener('click', () => {
+        curr = (curr + 1) % items.length;
+        show(curr);
+    });
+    setInterval(() => {
+        curr = (curr + 1) % items.length;
+        show(curr);
+    }, 8000);
+
+    // ANIMATE TITLES
+    function animateTitles() {
+        document.querySelectorAll('.section-title, .project-title').forEach(el => {
+            if (el.querySelector('.animated-letter')) return;
+            const txt = el.textContent;
+            el.innerHTML = '';
+            let d = 0;
+            for (let c of txt) {
+                if (c === ' ') {
+                    el.innerHTML += ' ';
+                } else {
+                    const sp = document.createElement('span');
+                    sp.className = 'animated-letter';
+                    sp.textContent = c;
+                    sp.style.animationDelay = (d * 0.05) + 's';
+                    el.appendChild(sp);
+                    d++;
+                }
+            }
+        });
+    }
+
+    // FORM
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('¡Gracias por tu consulta!');
+        e.target.reset();
+    });
+
+    // INIT
+    document.addEventListener('DOMContentLoaded', () => animateTitles());
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const h = this.getAttribute('href');
+            if (h !== '#' && document.querySelector(h)) {
+                e.preventDefault();
+                document.querySelector(h).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+</body>
+</html>
