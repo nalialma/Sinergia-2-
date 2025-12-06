@@ -368,15 +368,17 @@
         .project-title {
             font-family: 'Open Sans', sans-serif;
             font-weight: 900;
-            font-size: clamp(3rem, 14vw, 9rem);
-            line-height: 0.95;
+            font-size: clamp(2rem, 10vw, 8rem);
+            line-height: 1;
             text-transform: uppercase;
             color: white;
             text-shadow: 0 15px 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 0, 0, 0.8);
             word-spacing: 9999px;
             margin: 0;
             padding: 0;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
+            word-wrap: break-word;
+            overflow: visible;
         }
 
         .project-title span {
@@ -466,13 +468,14 @@
 
         .section-title {
             font-family: 'Open Sans', sans-serif;
-            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            font-size: clamp(1.5rem, 4vw, 2.8rem);
             font-weight: 900;
             color: var(--light-text);
             margin-bottom: 3rem;
-            letter-spacing: -1px;
-            line-height: 1.3;
+            letter-spacing: -0.5px;
+            line-height: 1.4;
             overflow: visible;
+            word-wrap: break-word;
         }
 
         .section-title span {
@@ -860,6 +863,16 @@
                 padding: clamp(2rem, 5vw, 4rem) 1.5rem;
             }
 
+            .section-title {
+                font-size: clamp(1.4rem, 4vw, 2.2rem);
+                letter-spacing: -0.5px;
+            }
+
+            .project-title {
+                font-size: clamp(1.8rem, 10vw, 4rem);
+                line-height: 1.1;
+            }
+
             .hero-container {
                 padding: clamp(1.5rem, 3vw, 2.5rem);
             }
@@ -918,6 +931,18 @@
 
             .hero-container {
                 padding: clamp(1rem, 2vw, 1.5rem);
+            }
+
+            .section-title {
+                font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+                letter-spacing: 0;
+                margin-bottom: 2rem;
+            }
+
+            .project-title {
+                font-size: clamp(1.5rem, 8vw, 3rem);
+                line-height: 1.1;
+                letter-spacing: -0.5px;
             }
 
             .projects-wrapper {
@@ -1007,6 +1032,7 @@
     <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="#galeria">Galería</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
         <li><a href="#por-que">¿Por Qué?</a></li>
         <li><a href="#contacto">Contacto</a></li>
