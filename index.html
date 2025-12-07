@@ -304,7 +304,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-image: url('https://i.pinimg.com/736x/0e/c7/cf/0ec7cfefea05dd3dd7a112382abbe893.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -312,10 +312,8 @@
             transition: opacity 1.2s ease-in-out;
         }
 
-        .hero.slide-1::before { background-image: url('https://images.unsplash.com/photo-1486325212027-8081e485255e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
-        .hero.slide-2::before { background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
-        .hero.slide-3::before { background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
-        .hero.slide-4::before { background-image: url('https://images.unsplash.com/photo-1512216835268-4b5b5a0d9c1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); }
+        .hero.slide-1::before { background-image: url('https://i.pinimg.com/736x/0e/c7/cf/0ec7cfefea05dd3dd7a112382abbe893.jpg'); }
+        .hero.slide-2::before { background-image: url('https://i.pinimg.com/736x/e4/69/52/e4695224551f1eff67f530072f99c217.jpg'); }
 
         .hero-container {
             position: relative;
@@ -390,10 +388,7 @@
         }
 
         .project-title span {
-            background: linear-gradient(135deg, var(--secondary-orange) 0%, var(--primary-light-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
         }
 
         .hero-nav-button {
@@ -489,40 +484,38 @@
         }
 
         .section-title span {
-            background: linear-gradient(135deg, var(--secondary-orange) 0%, var(--primary-green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--secondary-orange);
         }
 
-        /* ==================== ABOUT ==================== */
-        .about {
+        /* ==================== IDENTITY SECTION ==================== */
+        .identidad {
             background-image: url('https://i.pinimg.com/736x/62/ec/93/62ec935317ff7672b6cf363ce8d54dbe.jpg');
         }
 
-        .about-grid {
+        .identity-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .about-image {
+        .identity-image {
             width: 100%;
             max-width: 400px;
             aspect-ratio: 1;
             border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 40px 80px rgba(85, 162, 3, 0.4);
+            margin: 0 auto;
         }
 
-        .about-image img {
+        .identity-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .about-content h2 {
+        .identity-content h2 {
             font-family: var(--font-corporate);
             font-size: clamp(1.6rem, 3vw, 2.8rem);
             color: var(--light-text);
@@ -530,7 +523,7 @@
             font-weight: 900;
         }
 
-        .about-content p {
+        .identity-content p {
             font-family: var(--font-secondary);
             font-size: clamp(0.95rem, 1.5vw, 1.1rem);
             color: var(--gray-text);
@@ -538,196 +531,358 @@
             margin-bottom: 1.5rem;
         }
 
-        /* ==================== GALLERY ==================== */
-        .galeria {
-            background-image: url('https://i.pinimg.com/736x/99/6b/23/996b23d4a03f17c968633eaf2917ceeb.jpg');
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            aspect-ratio: 1;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 25px 60px rgba(85, 162, 3, 0.4);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.12) rotate(2deg);
-        }
-
-        /* ==================== FEATURED PROJECTS ==================== */
-        .destacados {
+        /* ==================== SERVICIOS/FEATURED PROJECTS ==================== */
+        .servicios {
             background-image: url('https://i.pinimg.com/736x/d3/3f/57/d33f572bdd25c39a53ababc75b886cc0.jpg');
         }
 
-        .featured-projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
+        /* ====== WHY SINERGIA CARDS ====== */
+        .why-sinergia-section {
+            margin-bottom: 5rem;
         }
 
-        .project-card {
+        .why-sinergia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .why-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(85, 162, 3, 0.25);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .why-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--secondary-orange);
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(85, 162, 3, 0.3), 0 0 50px rgba(252, 158, 7, 0.2);
+        }
+
+        .why-card-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-card-icon svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 5px 15px rgba(252, 158, 7, 0.3));
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover .why-card-icon svg {
+            filter: drop-shadow(0 10px 30px rgba(252, 158, 7, 0.6));
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .why-card h3 {
+            font-family: var(--font-corporate);
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        .why-card p {
+            font-family: var(--font-secondary);
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            line-height: 1.6;
+            display: none;
+        }
+
+        /* ====== CAROUSEL SECTION ====== */
+        .carousel-section {
+            margin-top: 4rem;
+        }
+
+        .carousel-section-title {
+            font-family: var(--font-corporate);
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .carousel-section-title span {
+            color: var(--secondary-orange);
+        }
+
+        .carousel-wrapper {
             position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .carousel-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .carousel-container::-webkit-scrollbar-track {
+            background: rgba(85, 162, 3, 0.1);
+            border-radius: 10px;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb {
+            background: rgba(85, 162, 3, 0.5);
+            border-radius: 10px;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(85, 162, 3, 0.8);
+        }
+
+        .carousel-item {
+            flex: 0 0 clamp(250px, 40vw, 400px);
             aspect-ratio: 1;
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             transition: all 0.4s ease;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
         }
 
-        .project-card:hover {
-            transform: translateY(-15px) scale(1.08);
-            box-shadow: 0 30px 70px rgba(85, 162, 3, 0.5);
-        }
-
-        .project-card img {
+        .carousel-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .project-card:hover img {
+        .carousel-item:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 30px 70px rgba(85, 162, 3, 0.5);
+        }
+
+        .carousel-item:hover img {
             transform: scale(1.15) rotate(3deg);
         }
 
-        .project-overlay {
+        .carousel-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.95) 100%);
             padding: 2rem 1.5rem 1.5rem;
             color: white;
-            transform: translateY(30px);
-            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .project-card:hover .project-overlay {
-            transform: translateY(0);
+        .carousel-item:hover .carousel-overlay {
+            opacity: 1;
         }
 
-        .project-overlay h3 {
+        .carousel-overlay h3 {
             font-family: var(--font-corporate);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
         }
 
-        .project-overlay p {
+        .carousel-overlay p {
             font-family: var(--font-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
         }
 
-        /* ==================== WHY ==================== */
-        .por-que {
-            background-image: url('https://i.pinimg.com/736x/fa/3d/0e/fa3d0e8f8c5e386b18169a50ea58dde8.jpg');
+        .carousel-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
         }
 
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .why-card {
-            padding: 2.5rem;
-            background: rgba(85, 162, 3, 0.08);
-            border: 2px solid rgba(85, 162, 3, 0.25);
-            border-radius: 15px;
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .why-card:hover {
-            background: rgba(85, 162, 3, 0.15);
-            border-color: var(--secondary-orange);
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(85, 162, 3, 0.3);
-        }
-
-        .why-card h3 {
+        .carousel-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.2);
+            border: 2px solid rgba(85, 162, 3, 0.4);
             color: var(--secondary-orange);
-            margin-bottom: 1.2rem;
-            font-family: var(--font-corporate);
-            font-size: 1.3rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
 
-        .why-card p {
-            color: var(--gray-text);
-            font-family: var(--font-secondary);
-            line-height: 1.8;
-            font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+        .carousel-btn:hover {
+            background: rgba(85, 162, 3, 0.4);
+            border-color: var(--secondary-orange);
+            transform: scale(1.1);
         }
 
-        /* ==================== CONTACT ==================== */
+        .carousel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: var(--secondary-orange);
+            transform: scale(1.3);
+        }
+
+        /* ==================== CONTACT SECTION ==================== */
         .contacto {
             background-image: url('https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg');
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        .contact-title-section {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .contact-items {
+        .contact-main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        /* LEFT COLUMN - INFO */
+        .contact-left {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem;
         }
 
-        .contact-item {
-            padding: 1.8rem;
+        .contact-info-block {
             background: linear-gradient(135deg, rgba(85, 162, 3, 0.15), rgba(252, 158, 7, 0.08));
+            padding: 2rem;
             border-left: 4px solid var(--secondary-orange);
             border-radius: 10px;
             transition: all 0.3s ease;
         }
 
-        .contact-item:hover {
+        .contact-info-block:hover {
             background: linear-gradient(135deg, rgba(85, 162, 3, 0.25), rgba(252, 158, 7, 0.15));
             transform: translateX(10px);
             box-shadow: 0 10px 30px rgba(85, 162, 3, 0.3);
         }
 
-        .contact-item h4 {
+        .contact-info-block h4 {
             color: var(--light-text);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-family: var(--font-corporate);
             font-weight: 700;
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .contact-item p {
+        .contact-info-block p {
             color: var(--gray-text);
             font-family: var(--font-secondary);
-            font-size: clamp(0.9rem, 1.2vw, 0.95rem);
+            font-size: 0.95rem;
+            line-height: 1.8;
         }
 
+        .contact-info-block a {
+            color: var(--secondary-orange);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info-block a:hover {
+            color: var(--primary-light-green);
+        }
+
+        .map-container {
+            margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            height: 300px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* CENTER COLUMN - LOGO */
+        .contact-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .contact-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(85, 162, 3, 0.3);
+        }
+
+        .contact-logo img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* RIGHT COLUMN - FORM */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -744,7 +899,9 @@
             font-weight: 700;
             color: var(--light-text);
             font-family: var(--font-secondary);
-            font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-group input,
@@ -757,6 +914,11 @@
             font-family: var(--font-secondary);
             font-size: 0.95rem;
             transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(229, 229, 229, 0.4);
         }
 
         .form-group input:focus,
@@ -772,23 +934,51 @@
             min-height: 120px;
         }
 
-        .btn-submit {
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-submit,
+        .btn-whatsapp {
             padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--secondary-orange) 0%, #fd8f00 100%);
-            color: var(--dark-bg);
             border: none;
             border-radius: 50px;
             font-weight: 700;
             font-family: var(--font-secondary);
-            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, #fd8f00 100%);
+            color: var(--dark-bg);
             box-shadow: 0 10px 30px rgba(252, 158, 7, 0.3);
         }
 
         .btn-submit:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(252, 158, 7, 0.5);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #20BA58);
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
         }
 
         /* ==================== FOOTER ==================== */
@@ -802,30 +992,33 @@
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
-        .footer-section h4 {
+        .footer-social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--secondary-orange);
-            margin-bottom: 1rem;
-            font-family: var(--font-corporate);
-            font-weight: 800;
-        }
-
-        .footer-section a {
-            display: block;
-            color: var(--gray-text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
             text-decoration: none;
-            margin-bottom: 0.8rem;
-            font-family: var(--font-secondary);
-            transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
-            color: var(--secondary-orange);
+        .footer-social-link:hover {
+            background: rgba(85, 162, 3, 0.3);
+            color: white;
+            transform: scale(1.2);
         }
 
         .footer-bottom {
@@ -834,6 +1027,20 @@
             border-top: 1px solid rgba(85, 162, 3, 0.2);
             font-family: var(--font-secondary);
             font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom a {
+            color: var(--secondary-orange);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--primary-light-green);
         }
 
         /* ==================== WHATSAPP BUTTON ==================== */
@@ -866,6 +1073,14 @@
             .hero-projects {
                 width: 100%;
             }
+
+            .contact-main-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-center {
+                grid-column: 1 / -1;
+            }
         }
 
         @media (max-width: 768px) {
@@ -887,23 +1102,19 @@
                 padding: clamp(1.5rem, 3vw, 2.5rem);
             }
 
-            .about-grid {
+            .identity-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .contact-grid {
+            .contact-main-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .gallery-grid,
-            .featured-projects-grid {
+            .servicios-grid {
                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
                 gap: 1.5rem;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
             }
 
             .whatsapp-btn {
@@ -959,19 +1170,14 @@
                 height: clamp(150px, 40vh, 300px);
             }
 
-            .about-image {
+            .identity-image {
                 max-width: 250px;
                 margin: 0 auto;
             }
 
-            .gallery-grid,
-            .featured-projects-grid {
+            .servicios-grid {
                 grid-template-columns: 1fr;
                 gap: 1.2rem;
-            }
-
-            .why-grid {
-                grid-template-columns: 1fr;
             }
 
             .whatsapp-btn {
@@ -982,8 +1188,18 @@
                 right: 15px;
             }
 
-            .contact-item {
+            .contact-info-block {
                 padding: 1.5rem;
+            }
+
+            .contact-main-grid {
+                gap: 1.5rem;
+            }
+
+            .btn-submit,
+            .btn-whatsapp {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -1041,10 +1257,8 @@
 <nav class="side-menu" id="sideMenu">
     <ul>
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#por-que">¿Por Qué?</a></li>
+        <li><a href="#identidad">Identidad</a></li>
+        <li><a href="#servicios">Servicios</a></li>
         <li><a href="#contacto">Contacto</a></li>
     </ul>
 </nav>
@@ -1056,31 +1270,17 @@
             <div class="projects-wrapper">
                 <div class="project-item active">
                     <div class="project-info">
-                        <div class="project-location">Zona Sur, Salta</div>
-                        <div class="project-type">Residencial Premium</div>
+                        <div class="project-location">Manzana B2, Lote Nº2, Zona Sur, Salta</div>
+                        <div class="project-type">Ideal para inversores y familias modernas.</div>
                     </div>
                     <h2 class="project-title">EKO<br><span>DISTRITO</span></h2>
                 </div>
                 <div class="project-item">
                     <div class="project-info">
-                        <div class="project-location">Área Central</div>
-                        <div class="project-type">Residencial Andino</div>
+                        <div class="project-location">Zona Centro, Salta</div>
+                        <div class="project-type">Avenida Premium con acceso directo</div>
                     </div>
-                    <h2 class="project-title">RESIDENCIAL<br><span>ANDINO</span></h2>
-                </div>
-                <div class="project-item">
-                    <div class="project-info">
-                        <div class="project-location">Downtown Premium</div>
-                        <div class="project-type">Torre Urbana</div>
-                    </div>
-                    <h2 class="project-title"><span>TORRES</span><br>PREMIUM</h2>
-                </div>
-                <div class="project-item">
-                    <div class="project-info">
-                        <div class="project-location">Zona Este</div>
-                        <div class="project-type">Lofts Contemporáneos</div>
-                    </div>
-                    <h2 class="project-title">LOFTS<br><span>URBANOS</span></h2>
+                    <h2 class="project-title">VÍA<br><span>AURELIA</span></h2>
                 </div>
             </div>
             <button class="hero-nav-button" id="nextProject" title="Siguiente proyecto">SIGUIENTE</button>
@@ -1088,106 +1288,198 @@
     </div>
 </section>
 
-<!-- ABOUT SECTION -->
-<section class="about" id="sobre-nosotros">
+<!-- IDENTIDAD SECTION -->
+<section class="identidad" id="identidad">
     <div class="container">
-        <h2 class="section-title" id="titleAbout">Sobre <span>Sinergia</span></h2>
+        <h2 class="section-title" id="titleIdentity">Nuestra <span>Identidad</span></h2>
 
-        <div class="about-grid">
-            <div class="about-image">
+        <div class="identity-grid">
+            <div class="identity-image">
                 <img src="https://i.pinimg.com/736x/62/ec/93/62ec935317ff7672b6cf363ce8d54dbe.jpg" alt="Sinergia">
             </div>
 
-            <div class="about-content">
+            <div class="identity-content">
                 <h2>Raíces y Futuro</h2>
-                <p>Sinergia es la unidad de desarrollo y construcción nacida directamente del Corralón Don Coco. Más que una expansión, nacimos como una respuesta para cerrar el círculo: detectamos que la mejor forma de garantizar una obra exitosa era controlando todo el proceso, desde el primer ladrillo hasta la entrega de la llave.</p>
-                <p>Somos la integración estratégica de la solidez de Don Coco con un equipo técnico especializado. Volcamos nuestros 14 años de experiencia y pasión por la construcción para asegurar que los materiales lleguen a tiempo, la calidad sea la prometida, y tu inversión sea segura.</p>
+                <p>Sinergia es la unidad de desarrollo y construcción nacida directamente del Corralón Don Coco. Más que una expansión, nacimos como una respuesta para cerrar el círculo: detectamos que la mejor forma de garantizar una obra exitosa era controlando todo el proceso, desde el primer ladrillo hasta la entrega de la llave. Somos la integración estratégica de la solidez de Don Coco con un equipo técnico especializado. Volcamos nuestros 14 años de experiencia y pasión por la construcción para asegurar que los materiales lleguen a tiempo, la calidad sea la prometida, y tu inversión sea segura.</p>
+              <h2> ¿Por qué elegir Sinergia?  </h2> 
+            </p>Porque nos obsesionamos con el detalle, creamos activos que aumentan su valor con el tiempo, y la confianza es nuestro principal activo. Garantizamos integración entre cadena de suministro y ejecución, seguridad absoluta en cada transacción, innovación inteligente en cada proyecto, maestría técnica rigurosa respaldada por años de experiencia, y una relación de transparencia, cercanía y profesionalismo donde tu éxito es nuestro éxito. Nos comprometemos con excelencia, innovación y sostenibilidad en Salta y el NOA.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FEATURED PROJECTS -->
-<section class="destacados" id="proyectos">
+<!-- SERVICIOS/PROYECTOS DESTACADOS -->
+<section class="servicios" id="servicios">
     <div class="container">
-        <h2 class="section-title" id="titleProjects">Proyectos <span>Destacados</span></h2>
+        <h2 class="section-title" id="titleServicios">Nuestros <span>Servicios</span></h2>
         
-        <div class="featured-projects-grid">
-            <div class="project-card">
-                <img src="https://i.pinimg.com/736x/99/6b/23/996b23d4a03f17c968633eaf2917ceeb.jpg" alt="Residencial">
-                <div class="project-overlay">
-                    <h3>Residencial Andino</h3>
-                    <p>Complejo residencial con vista a la Cordillera</p>
+        <!-- WHY SINERGIA CARDS -->
+        <div class="why-sinergia-section">
+            <div class="why-sinergia-grid">
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    @keyframes buildAnimation {
+                                        0% { stroke-dashoffset: 100; }
+                                        100% { stroke-dashoffset: 0; }
+                                    }
+                                    .build-line { animation: buildAnimation 2s ease-in-out infinite; stroke-dasharray: 100; }
+                                </style>
+                            </defs>
+                            <!-- Casa -->
+                            <path class="build-line" d="M 20 70 L 50 35 L 80 70" fill="none" stroke="#FC9E07" stroke-width="3" stroke-linecap="round"/>
+                            <rect class="build-line" x="25" y="70" width="50" height="25" fill="none" stroke="#FC9E07" stroke-width="3"/>
+                            <rect x="35" y="75" width="12" height="12" fill="none" stroke="#FC9E07" stroke-width="2"/>
+                            <rect x="53" y="75" width="12" height="12" fill="none" stroke="#FC9E07" stroke-width="2"/>
+                            <rect x="44" y="85" width="12" height="15" fill="none" stroke="#FC9E07" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Construcción en Sistema Tradicional y Steel Framing</h3>
                 </div>
-            </div>
-            <div class="project-card">
-                <img src="https://i.pinimg.com/736x/d3/3f/57/d33f572bdd25c39a53ababc75b886cc0.jpg" alt="PH">
-                <div class="project-overlay">
-                    <h3>PH Urbano Sur</h3>
-                    <p>Penthouse de lujo en zona céntrica</p>
+
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    @keyframes helmetBounce {
+                                        0%, 100% { transform: translateY(0); }
+                                        50% { transform: translateY(-5px); }
+                                    }
+                                    .helmet { animation: helmetBounce 2s ease-in-out infinite; }
+                                </style>
+                            </defs>
+                            <!-- Casco de seguridad -->
+                            <g class="helmet">
+                                <path d="M 25 65 L 30 35 L 50 25 L 70 35 L 75 65" fill="none" stroke="#FC9E07" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M 30 65 Q 50 75 70 65" fill="none" stroke="#FC9E07" stroke-width="3" stroke-linecap="round"/>
+                                <rect x="35" y="50" width="30" height="3" fill="#FC9E07"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3>Dirección Técnica y Planificación</h3>
                 </div>
-            </div>
-            <div class="project-card">
-                <img src="https://i.pinimg.com/736x/fa/3d/0e/fa3d0e8f8c5e386b18169a50ea58dde8.jpg" alt="Lofts">
-                <div class="project-overlay">
-                    <h3>Lofts Contemporáneos</h3>
-                    <p>Espacios abiertos con estilo industrial</p>
+
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    @keyframes drawPlan {
+                                        0% { stroke-dashoffset: 200; }
+                                        100% { stroke-dashoffset: 0; }
+                                    }
+                                    .plan-line { animation: drawPlan 3s ease-in-out infinite; stroke-dasharray: 200; }
+                                </style>
+                            </defs>
+                            <!-- Planos -->
+                            <rect class="plan-line" x="20" y="20" width="60" height="60" fill="none" stroke="#FC9E07" stroke-width="2" stroke-dasharray="200"/>
+                            <circle cx="35" cy="35" r="3" fill="#FC9E07"/>
+                            <circle cx="50" cy="35" r="3" fill="#FC9E07"/>
+                            <circle cx="65" cy="35" r="3" fill="#FC9E07"/>
+                            <line x1="30" y1="50" x2="70" y2="50" stroke="#FC9E07" stroke-width="2"/>
+                            <line x1="30" y1="60" x2="70" y2="60" stroke="#FC9E07" stroke-width="2"/>
+                            <path class="plan-line" d="M 30 45 L 70 45 L 70 75" fill="none" stroke="#FC9E07" stroke-width="1.5" stroke-dasharray="200"/>
+                        </svg>
+                    </div>
+                    <h3>Diseño, Planos y Modelos 3D</h3>
                 </div>
-            </div>
-            <div class="project-card">
-                <img src="https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg" alt="Sustentable">
-                <div class="project-overlay">
-                    <h3>Vivienda Sustentable</h3>
-                    <p>Construcción eco-amigable</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://i.pinimg.com/736x/a8/26/b5/a826b5964d4e76fd689820e92da2b42c.jpg" alt="Complejo">
-                <div class="project-overlay">
-                    <h3>Complejo Residencial</h3>
-                    <p>Comunidad integrada con servicios premium</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://i.pinimg.com/736x/bf/97/da/bf97da59f3a5e4b9a1e0a3f0b3c1e2d3.jpg" alt="Torre">
-                <div class="project-overlay">
-                    <h3>Torre Residencial Prime</h3>
-                    <p>Edificio de lujo con vistas panorámicas</p>
+
+                <div class="why-card">
+                    <div class="why-card-icon">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    @keyframes checkAnimation {
+                                        0% { opacity: 0; }
+                                        50% { opacity: 1; }
+                                        100% { opacity: 1; }
+                                    }
+                                    .check-item { animation: checkAnimation 2s ease-in-out infinite; }
+                                </style>
+                            </defs>
+                            <!-- Checklist -->
+                            <rect x="20" y="20" width="60" height="60" fill="none" stroke="#FC9E07" stroke-width="2" stroke-dasharray="5,3" stroke-dashoffset="0"/>
+                            <g class="check-item">
+                                <circle cx="30" cy="35" r="3" fill="#FC9E07"/>
+                                <path d="M 25 35 L 30 40 L 40 30" fill="none" stroke="#FC9E07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <g class="check-item" style="animation-delay: 0.4s;">
+                                <circle cx="30" cy="50" r="3" fill="#FC9E07"/>
+                                <path d="M 25 50 L 30 55 L 40 45" fill="none" stroke="#FC9E07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <g class="check-item" style="animation-delay: 0.8s;">
+                                <circle cx="30" cy="65" r="3" fill="#FC9E07"/>
+                                <path d="M 25 65 L 30 70 L 40 60" fill="none" stroke="#FC9E07" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <line x1="50" y1="35" x2="75" y2="35" stroke="#FC9E07" stroke-width="2"/>
+                            <line x1="50" y1="50" x2="75" y2="50" stroke="#FC9E07" stroke-width="2"/>
+                            <line x1="50" y1="65" x2="75" y2="65" stroke="#FC9E07" stroke-width="2"/>
+                            <circle cx="80" cy="30" r="4" fill="none" stroke="#FC9E07" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>Administración Reformas y Ejecución de Obras</h3>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- WHY SECTION -->
-<section class="por-que" id="por-que">
-    <div class="container">
-        <h2 class="section-title" id="titleWhy">¿Por Qué <span>Sinergia?</span></h2>
+        <!-- PROYECTOS CAROUSEL -->
+        <div class="carousel-section">
+            <h3 class="carousel-section-title">Nuestros <span>Proyectos Destacados</span></h3>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="carousel-item">
+                        <img src="https://i.pinimg.com/736x/0e/c7/cf/0ec7cfefea05dd3dd7a112382abbe893.jpg" alt="EKO Distrito">
+                        <div class="carousel-overlay">
+                            <h3>EKO Distrito</h3>
+                            <p>Residencial premium para inversores y familias modernas</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.pinimg.com/736x/d8/a3/bc/d8a3bcbd9f842d82f426b21a143a76bd.jpg" alt="EKO Distrito 2">
+                        <div class="carousel-overlay">
+                            <h3>EKO Distrito</h3>
+                            <p>Amenidades y espacios comunes de lujo</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg" alt="EKO Distrito 3">
+                        <div class="carousel-overlay">
+                            <h3>EKO Distrito</h3>
+                            <p>Diseño sustentable y moderno</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.pinimg.com/736x/e4/69/52/e4695224551f1eff67f530072f99c217.jpg" alt="VÍA Aurelia">
+                        <div class="carousel-overlay">
+                            <h3>VÍA Aurelia</h3>
+                            <p>Ubicación premium en zona céntrica</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.pinimg.com/736x/40/f7/08/40f708069694ffa200ce6959dcab51d2.jpg" alt="VÍA Aurelia 2">
+                        <div class="carousel-overlay">
+                            <h3>VÍA Aurelia</h3>
+                            <p>Arquitectura contemporánea de lujo</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.pinimg.com/736x/5a/07/fc/5a07fcd1bba65ee56c38d814c7250532.jpg" alt="VÍA Aurelia 3">
+                        <div class="carousel-overlay">
+                            <h3>VÍA Aurelia</h3>
+                            <p>Espacios abiertos y vistas panorámicas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="why-grid">
-            <div class="why-card">
-                <h3>🔗 Integración</h3>
-                <p>Conectamos cadena de suministro con ejecución. Garantizamos calidad y plazos comprometidos.</p>
-            </div>
-            <div class="why-card">
-                <h3>✨ Calidad</h3>
-                <p>Nos obsesionamos con el detalle. Creamos activos que aumentan su valor con el tiempo.</p>
-            </div>
-            <div class="why-card">
-                <h3>🛡️ Seguridad</h3>
-                <p>La confianza es nuestro principal activo. Tu inversión merece claridad absoluta.</p>
-            </div>
-            <div class="why-card">
-                <h3>💡 Innovación</h3>
-                <p>Optimizamos inteligentemente. Tu inversión trabajará para ti desde el día uno.</p>
-            </div>
-            <div class="why-card">
-                <h3>🏆 Maestría</h3>
-                <p>14+ años de experiencia. Supervisión técnica rigurosa en cada etapa del proyecto.</p>
-            </div>
-            <div class="why-card">
-                <h3>🤝 Tu Socio</h3>
-                <p>Transparencia, cercanía, profesionalismo. Tu éxito es nuestro éxito.</p>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn">‹</button>
+                <div class="carousel-indicators" id="carouselIndicators"></div>
+                <button class="carousel-btn" id="nextBtn">›</button>
             </div>
         </div>
     </div>
@@ -1196,47 +1488,60 @@
 <!-- CONTACT SECTION -->
 <section class="contacto" id="contacto">
     <div class="container">
-        <h2 class="section-title" id="titleContact">Ponte en <span>Contacto</span></h2>
+        <div class="contact-title-section">
+            <h2 class="section-title" id="titleContact">Ponete en <span>Contacto con Nosotros</span></h2>
+        </div>
 
-        <div class="contact-grid">
-            <div class="contact-items">
-                <div class="contact-item">
-                    <h4>📍 Ubicación</h4>
-                    <p>Zona Sur, Salta, Argentina</p>
+        <div class="contact-main-grid">
+            <!-- LEFT COLUMN -->
+            <div class="contact-left">
+                <div class="contact-info-block">
+                    <h4>📅 Horarios de Atención</h4>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM<br>Sábados: 10:00 AM - 2:00 PM<br><br><strong>WhatsApp 24/7</strong><br>Disponible siempre para tus consultas</p>
                 </div>
-                <div class="contact-item">
-                    <h4>📞 Teléfono</h4>
-                    <p><a href="tel:+5493872233151">+54 9 387 2233151</a></p>
+
+                <div class="contact-info-block">
+                    <h4>📍 Encontranos en</h4>
+                    <p>Zona Sur, Salta, Argentina<br><br><a href="https://share.google.com/ZucbnXqgT89bCOezq" target="_blank">Ver ubicación en Google Maps</a></p>
                 </div>
-                <div class="contact-item">
-                    <h4>✉️ Email</h4>
-                    <p><a href="mailto:info@sinergiadesarrolladora.com">info@sinergiadesarrolladora.com</a></p>
-                </div>
-                <div class="contact-item">
-                    <h4>💬 WhatsApp</h4>
-                    <p><a href="https://wa.me/5493872233151" target="_blank">Contactar por WhatsApp</a></p>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.5557418089457!2d-65.40915!3d-24.7821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941bc7f5a1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sSalta!5e0!3m2!1ses!2sar!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
-            <form class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" name="nombre" placeholder="Tu nombre" required>
+            <!-- CENTER COLUMN -->
+            <div class="contact-center">
+                <div class="contact-logo">
+                    <img src="https://i.pinimg.com/736x/17/ab/b9/17abb909c0d4c30191b969f6cd81d533.jpg" alt="Logo Sinergia">
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="tu@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Teléfono</label>
-                    <input type="tel" name="telefono" placeholder="+54 9 387 XXXXXXX">
-                </div>
-                <div class="form-group">
-                    <label>Mensaje</label>
-                    <textarea name="mensaje" placeholder="Cuéntanos tu consulta..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Enviar Consulta</button>
-            </form>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" name="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" name="telefono" placeholder="+54 9 387 XXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea name="mensaje" placeholder="Cuéntanos tu consulta..." required></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit" class="btn-submit">📧 Enviar Consulta</button>
+                        <a href="https://wa.me/5493872233151" target="_blank" class="btn-whatsapp">💬 Chatear por WhatsApp</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -1244,28 +1549,25 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-content">
-        <div class="footer-section">
-            <h4>Sinergia Desarrolladora</h4>
-            <p>Desarrolladora inmobiliaria comprometida con excelencia, innovación y sostenibilidad en Salta y el NOA.</p>
+        <div class="footer-socials">
+            <a href="https://facebook.com/sinergiadesarrolladora" target="_blank" class="footer-social-link" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/sinergiadesarrolladora" target="_blank" class="footer-social-link" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com/company/sinergiadesarrolladora" target="_blank" class="footer-social-link" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://wa.me/5493872233151" target="_blank" class="footer-social-link" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
         </div>
-        <div class="footer-section">
-            <h4>Enlaces Rápidos</h4>
-            <a href="#inicio">Inicio</a>
-            <a href="#sobre-nosotros">Sobre Nosotros</a>
-            <a href="#galeria">Galería</a>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#por-que">¿Por Qué?</a>
-            <a href="#contacto">Contacto</a>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sinergia Constructora. Todos los derechos reservados. | Salta, Argentina</p>
+            <p>Creado por <a href="https://septimapacha.com" target="_blank">Séptima Pacha Co.</a></p>
         </div>
-        <div class="footer-section">
-            <h4>Contacto</h4>
-            <a href="tel:+5493872233151">📞 +54 9 387 2233151</a>
-            <a href="mailto:info@sinergiadesarrolladora.com">✉️ Email</a>
-            <a href="https://wa.me/5493872233151" target="_blank">💬 WhatsApp</a>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 Sinergia. Todos los derechos reservados. | Salta, Argentina</p>
     </div>
 </footer>
 
@@ -1371,7 +1673,7 @@
 
     // ANIMATE SECTION TITLES
     function animateSectionTitles() {
-        const titles = ['titleAbout', 'titleGallery', 'titleProjects', 'titleWhy', 'titleContact'];
+        const titles = ['titleIdentity', 'titleServicios', 'titleContact'];
         titles.forEach(id => {
             const el = document.getElementById(id);
             if (!el || el.querySelector('.animated-letter')) return;
@@ -1402,10 +1704,93 @@
         document.getElementById('contactForm').reset();
     });
 
+    // ========== CAROUSEL FUNCTIONALITY ==========
+    const carouselContainer = document.getElementById('carouselContainer');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const carouselIndicators = document.getElementById('carouselIndicators');
+    let currentIndex = 0;
+    const itemsPerView = 1;
+    const totalItems = carouselItems.length;
+
+    // Crear indicadores
+    function createIndicators() {
+        for (let i = 0; i < totalItems; i++) {
+            const indicator = document.createElement('div');
+            indicator.className = 'carousel-indicator' + (i === 0 ? ' active' : '');
+            indicator.addEventListener('click', () => goToSlide(i));
+            carouselIndicators.appendChild(indicator);
+        }
+    }
+
+    // Ir a un slide específico
+    function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+    }
+
+    // Actualizar carrusel
+    function updateCarousel() {
+        const itemWidth = carouselItems[0].offsetWidth;
+        const gap = 32; // gap en CSS
+        const totalWidth = (itemWidth + gap) * currentIndex;
+        
+        carouselContainer.scrollLeft = totalWidth;
+        
+        // Actualizar indicadores
+        document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    // Botones siguiente/anterior
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        updateCarousel();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        updateCarousel();
+    });
+
+    // Auto-scroll del carrusel
+    let autoScrollInterval;
+    
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            updateCarousel();
+        }, 5000);
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    // Pausar auto-scroll al interactuar
+    carouselContainer.addEventListener('mouseenter', stopAutoScroll);
+    carouselContainer.addEventListener('mouseleave', startAutoScroll);
+    prevBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        startAutoScroll();
+    });
+    nextBtn.addEventListener('click', () => {
+        stopAutoScroll();
+        startAutoScroll();
+    });
+
+    // Inicializar
+    createIndicators();
+    startAutoScroll();
+
     // INITIALIZE
     document.addEventListener('DOMContentLoaded', () => {
         animateProjectTitles();
         animateSectionTitles();
+        createIndicators();
+        startAutoScroll();
     });
 
     // SMOOTH SCROLL
