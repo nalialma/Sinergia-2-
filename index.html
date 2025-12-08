@@ -33,7 +33,10 @@
     
     <!-- Canonical -->
     <link rel="canonical" href="https://sinergiaconstructora.com">
-    
+     <!-- EmailJS Library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Resto de scripts y estilos -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -1862,16 +1865,9 @@
 
 // ========== EMAILJS INITIALIZATION ==========
     // Esperar a que EmailJS cargue
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init('sjLYN6X9uYr8Szb3A');
-    } else {
-        setTimeout(() => {
-            if (typeof emailjs !== 'undefined') {
-                emailjs.init('sjLYN6X9uYr8Szb3A');
-            }
-        }, 1000);
-    }
-
+emailjs.init('sjLYN6X9uYr8Szb3A');
+    
+    
     // SPLASH SCREEN
     window.addEventListener('load', () => {
         const splash = document.getElementById('splashScreen');
@@ -1993,41 +1989,42 @@
     }
 
     // ========== CONTACT FORM WITH EMAILJS ==========
- const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
+
+const contactForm = document.getElementById('contactForm');
+
+// Esperar a que el formulario esté en el DOM
+document.addEventListener('DOMContentLoaded', function() {
+    const submitBtn = contactForm.querySelector('.btn-submit');
     const originalText = '📧 Enviar Consulta';
 
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Validar que EmailJS esté disponible
-        if (typeof emailjs === 'undefined') {
-            alert('⚠️ Error: EmailJS no se ha cargado correctamente. Por favor, recarga la página.');
-            return;
-        }
         
         submitBtn.disabled = true;
         submitBtn.textContent = '📧 Enviando...';
         
         try {
             const response = await emailjs.sendForm(
-                'service_j3nsuqk',
-                'template_contact_form',
+                'service_j3nsuqk',           // Tu Service ID
+                'template_contact_form',     // Tu Template ID
                 contactForm,
-                'sjLYN6X9uYr8Szb3A'
+                'sjLYN6X9uYr8Szb3A'          // Tu Public Key
             );
             
+            console.log('Email enviado:', response);
             alert('✅ ¡Consulta enviada con éxito! Nos contactaremos pronto.');
             contactForm.reset();
             
         } catch (error) {
-            console.error('Error:', error);
-            alert('❌ Error al enviar:\n' + error.message + '\n\nVerifica que el template "template_contact_form" exista en EmailJS.');
+            console.error('Error de EmailJS:', error);
+            alert('❌ Error al enviar: ' + error.text);
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
         }
     });
+});
+    
     // ========== CAROUSEL FUNCTIONALITY ==========
     const carouselContainer = document.getElementById('carouselContainer');
     const carouselItems = document.querySelectorAll('.carousel-item');
