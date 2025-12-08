@@ -1754,7 +1754,7 @@
     </div>
 </section>
 
-<!-- CONTACT SECTION -->
+<!-- CONTACT SECTION - CORREGIDA Y FUNCIONAL ✅ -->
 <section class="contacto" id="contacto">
     <div class="container">
         <div class="contact-title-section">
@@ -1859,10 +1859,9 @@
 </a>
 
 <script>
-    // Inicializar EmailJS
-emailjs.init({
-    publicKey: 'sjLYN6X9uYr8Szb3A' //   PUBLIC KEY
-});
+    // ========== EMAILJS INITIALIZATION ==========
+    emailjs.init('sjLYN6X9uYr8Szb3A');  // ✅ SIN LLAVES
+    
     // SPLASH SCREEN
     window.addEventListener('load', () => {
         const splash = document.getElementById('splashScreen');
@@ -1912,7 +1911,6 @@ emailjs.init({
         });
         hero.className = 'hero slide-' + (index + 1);
         
-        // Reanimar títulos del proyecto 
         setTimeout(() => {
             animateProjectTitles();
         }, 100);
@@ -1928,11 +1926,10 @@ emailjs.init({
         showProject(currentProject);
     }, 8000);
 
-    // ANIMATE ALL TITLES INCLUDING HERO
     function animateProjectTitles() {
         const projectTitles = document.querySelectorAll('.project-title');
         projectTitles.forEach(title => {
-            if (title.querySelector('.animated-letter')) return; // Ya animado
+            if (title.querySelector('.animated-letter')) return;
             
             const text = title.textContent;
             title.innerHTML = '';
@@ -1957,7 +1954,6 @@ emailjs.init({
         });
     }
 
-    // ANIMATE SECTION TITLES
     function animateSectionTitles() {
         const titles = ['titleIdentity', 'titleServicios', 'titleContact'];
         titles.forEach(id => {
@@ -1983,46 +1979,37 @@ emailjs.init({
         });
     }
 
-    
-// cod contact form con emaijs:
-// ========== C ==========
-const contactForm = document.getElementById('contactForm');
-const submitBtn = document.querySelector('.btn-submit');
+    // ========== CONTACT FORM CON EMAILJS ✅ ==========
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.querySelector('.btn-submit');
+    const originalText = '📧 Enviar Consulta';  // ✅ AGREGADO
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-
-    
-    // Deshabilitar botón y mostrar estado
-    submitBtn.disabled = true;
-    submitBtn.textContent = '📧 Enviando...';
-    
-    try {
-        // Enviar email con EmailJS
-        const response = await emailjs.sendForm(
-            'service_j3nsuqk',           //  Service ID 
-            'template_contact_form',      // Template ID (crear en EmailJS)
-            document.getElementById('contactForm'),
-            "sjLYN6X9uYr8Szb3A" // Public Key
-        );
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        // Si llega aquí, el email se envió ✅
-        alert('✅ ¡Consulta enviada con éxito! Nos contactaremos pronto.');
-        document.getElementById('contactForm').reset();
+        submitBtn.disabled = true;
+        submitBtn.textContent = '📧 Enviando...';
         
-    } catch (error) {
-        // Si hay error
-        console.error('Error al enviar:', error);
-        alert('❌ Error al enviar. Por favor intenta nuevamente o contacta por WhatsApp.');
-    } finally {
-        // Restaurar botón
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }
-});
+        try {
+            const response = await emailjs.sendForm(
+                'service_j3nsuqk',
+                'template_contact_form',
+                contactForm,
+                'sjLYN6X9uYr8Szb3A'
+            );
+            
+            alert('✅ ¡Consulta enviada con éxito! Nos contactaremos pronto.');
+            contactForm.reset();
+            
+        } catch (error) {
+            console.error('Error:', error);
+            alert('❌ Error al enviar:\n' + error.message + '\n\nPor favor intenta nuevamente.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
 
-    
     // ========== CAROUSEL FUNCTIONALITY ==========
     const carouselContainer = document.getElementById('carouselContainer');
     const carouselItems = document.querySelectorAll('.carousel-item');
@@ -2033,7 +2020,6 @@ contactForm.addEventListener('submit', async (e) => {
     const itemsPerView = 1;
     const totalItems = carouselItems.length;
 
-    // Crear indicadores
     function createIndicators() {
         for (let i = 0; i < totalItems; i++) {
             const indicator = document.createElement('div');
@@ -2043,27 +2029,23 @@ contactForm.addEventListener('submit', async (e) => {
         }
     }
 
-    // Ir a un slide específico
     function goToSlide(index) {
         currentIndex = index;
         updateCarousel();
     }
 
-    // Actualizar carrusel
     function updateCarousel() {
         const itemWidth = carouselItems[0].offsetWidth;
-        const gap = 32; // gap en CSS
+        const gap = 32;
         const totalWidth = (itemWidth + gap) * currentIndex;
         
         carouselContainer.scrollLeft = totalWidth;
         
-        // Actualizar indicadores
         document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
             indicator.classList.toggle('active', index === currentIndex);
         });
     }
 
-    // Botones siguiente/anterior
     prevBtn.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + totalItems) % totalItems;
         updateCarousel();
@@ -2074,7 +2056,6 @@ contactForm.addEventListener('submit', async (e) => {
         updateCarousel();
     });
 
-    // Auto-scroll del carrusel
     let autoScrollInterval;
     
     function startAutoScroll() {
@@ -2088,7 +2069,6 @@ contactForm.addEventListener('submit', async (e) => {
         clearInterval(autoScrollInterval);
     }
 
-    // Pausar auto-scroll al interactuar
     carouselContainer.addEventListener('mouseenter', stopAutoScroll);
     carouselContainer.addEventListener('mouseleave', startAutoScroll);
     prevBtn.addEventListener('click', () => {
@@ -2100,11 +2080,9 @@ contactForm.addEventListener('submit', async (e) => {
         startAutoScroll();
     });
 
-    // Inicializar
     createIndicators();
     startAutoScroll();
 
-    // INITIALIZE
     document.addEventListener('DOMContentLoaded', () => {
         animateProjectTitles();
         animateSectionTitles();
@@ -2112,7 +2090,6 @@ contactForm.addEventListener('submit', async (e) => {
         startAutoScroll();
     });
 
-    // SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -2169,7 +2146,6 @@ contactForm.addEventListener('submit', async (e) => {
         updateModalImage();
     });
 
-    // Teclado para modal
     document.addEventListener('keydown', (e) => {
         if (!imageModal.classList.contains('active')) return;
         if (e.key === 'Escape') closeModal();
@@ -2183,13 +2159,11 @@ contactForm.addEventListener('submit', async (e) => {
         }
     });
 
-    // Agregar listeners a los carousel items para abrir modal
     document.querySelectorAll('.carousel-item').forEach((item, index) => {
         item.addEventListener('click', function() {
             let images = [];
             const title = this.querySelector('.carousel-overlay h3').textContent;
             
-            // Obtener imágenes según el proyecto
             if (title.includes('EKO')) {
                 images = [
                     'https://i.pinimg.com/736x/0e/c7/cf/0ec7cfefea05dd3dd7a112382abbe893.jpg',
@@ -2239,20 +2213,16 @@ contactForm.addEventListener('submit', async (e) => {
         clearInterval(heroImageTimer);
     }
 
-    // Cambiar imágenes cuando cambia el proyecto
     const originalShowProject = showProject;
     showProject = function(index) {
-        // Resetear índice de imágenes
         heroImageIndex = index * 3;
         showHeroImage(heroImageIndex);
         stopHeroImageCycle();
         startHeroImageCycle();
         
-        // Llamar función original
         originalShowProject.call(this, index);
     };
 
-    // Iniciar ciclo de imágenes del hero
     startHeroImageCycle();
 </script>
 </body>
