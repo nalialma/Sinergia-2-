@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sinergia Constructora - Desarrolladora Inmobiliaria Premium en Salta | Constructora NOA</title>
-    
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/index.min.js"></script>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Sinergia Constructora: Desarrolladora inmobiliaria número 1 en Salta. Proyectos residenciales de lujo, construcción steel framing y tradicional en Salta capital y Norte Argentino (NOA). EKO Distrito, VÍA Aurelia. ¡Contáctanos hoy!">
     <meta name="keywords" content="constructora Salta, desarrolladora inmobiliaria Salta, proyectos residenciales Salta, construcción Salta, desarrolladora NOA, constructora norte argentino, inmobiliaria Salta capital, vivienda de lujo Salta, construcción steel framing Salta, EKO Distrito, VÍA Aurelia, desarrollos residenciales Argentina">
@@ -1855,10 +1855,14 @@
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/5493872233151" class="whatsapp-btn" target="_blank" title="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
+   <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
+    // Inicializar EmailJS
+emailjs.init({
+    publicKey: 'sjLYN6X9uYr8Szb3A' //   PUBLIC KEY
+});
     // SPLASH SCREEN
     window.addEventListener('load', () => {
         const splash = document.getElementById('splashScreen');
@@ -1908,7 +1912,7 @@
         });
         hero.className = 'hero slide-' + (index + 1);
         
-        // Reanimar títulos del proyecto actual
+        // Reanimar títulos del proyecto 
         setTimeout(() => {
             animateProjectTitles();
         }, 100);
@@ -1979,13 +1983,46 @@
         });
     }
 
-    // CONTACT FORM
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('¡Gracias! Tu consulta ha sido enviada. Nos contactaremos pronto.');
-        document.getElementById('contactForm').reset();
-    });
+    
+// cod contact form con emaijs:
+// ========== C ==========
+const contactForm = document.getElementById('contactForm');
+const submitBtn = document.querySelector('.btn-submit');
 
+contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+
+    
+    // Deshabilitar botón y mostrar estado
+    submitBtn.disabled = true;
+    submitBtn.textContent = '📧 Enviando...';
+    
+    try {
+        // Enviar email con EmailJS
+        const response = await emailjs.sendForm(
+            'service_j3nsuqk',           //  Service ID 
+            'template_contact_form',      // Template ID (crear en EmailJS)
+            document.getElementById('contactForm'),
+            "sjLYN6X9uYr8Szb3A" // Public Key
+        );
+        
+        // Si llega aquí, el email se envió ✅
+        alert('✅ ¡Consulta enviada con éxito! Nos contactaremos pronto.');
+        document.getElementById('contactForm').reset();
+        
+    } catch (error) {
+        // Si hay error
+        console.error('Error al enviar:', error);
+        alert('❌ Error al enviar. Por favor intenta nuevamente o contacta por WhatsApp.');
+    } finally {
+        // Restaurar botón
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
+});
+
+    
     // ========== CAROUSEL FUNCTIONALITY ==========
     const carouselContainer = document.getElementById('carouselContainer');
     const carouselItems = document.querySelectorAll('.carousel-item');
