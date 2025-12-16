@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinergia Desarrolladora - Nuestros Proyectos | Construcción Premium Salta</title>
+    <meta name="description" content="Explorá los proyectos de Sinergia Desarrolladora en Salta. Obras en ejecución, finalizadas y en pozo. Steel framing y construcción tradicional. Transparencia total en cada etapa.">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== RESET Y VARIABLES ==================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-green: #55A203;
+            --primary-light-green: #8CD51D;
+            --secondary-orange: #FC9E07;
+            --accent-yellow: #F8EF0C;
+            --dark-bg: #0a0a0a;
+            --dark-alt: #1a1a1a;
+            --light-text: #f8f8f6;
+            --gray-text: #e3e3e3;
+            --gray-dark: #a8a8a8;
+            --font-corporate: 'Poppins', 'DM Sans', sans-serif;
+            --font-secondary: 'Open Sans', sans-serif;
+            --transition-fast: 0.3s ease;
+            --transition-smooth: 0.6s ease;
+        }
+        
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: var(--font-secondary);
+            background: var(--dark-bg);
+            color: var(--gray-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== SPLASH SCREEN ==================== */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg), var(--dark-alt));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-logo-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            animation: pulseBG 3s infinite;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes pulseBG {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(252, 158, 7, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(252, 158, 7, 0); }
+        }
+
+        .splash-logo {
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            object-fit: cover;
+            filter: drop-shadow(0 10px 30px rgba(252, 158, 7, 0.5));
+            animation: zoomIn 1s ease-out forwards;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .loading-text {
+            font-family: var(--font-corporate);
+            font-size: 2rem;
+            color: var(--secondary-orange);
+            text-shadow: 0 0 15px rgba(252, 158, 7, 0.4);
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        /* ==================== ANIMATED BORDERS ==================== */
+        .animated-border {
+            position: fixed;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .animated-border-left {
+            left: 0;
+            background: linear-gradient(180deg, var(--primary-green) 0%, transparent 50%, var(--primary-green) 100%);
+            animation: borderFlow 6s linear infinite;
+            box-shadow: 0 0 20px rgba(85, 162, 3, 0.5);
+        }
+
+        .animated-border-right {
+            right: 0;
+            background: linear-gradient(180deg, var(--secondary-orange) 0%, transparent 50%, var(--secondary-orange) 100%);
+            animation: borderFlowReverse 6s linear infinite;
+            box-shadow: 0 0 20px rgba(252, 158, 7, 0.5);
+        }
+
+        @keyframes borderFlow {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes borderFlowReverse {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* ==================== HEADER ==================== */
+        .header-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            z-index: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .logo-circle {
+            width: 90px;
+            height: 90px;
+            background: rgba(85, 162, 3, 0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            animation: slideIn 0.6s ease 2s forwards;
+            pointer-events: auto;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .logo-circle:hover {
+            background: rgba(85, 162, 3, 0.25);
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(252, 158, 7, 0.5);
+        }
+
+        .logo-circle img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .back-home {
+            padding: 1rem 2rem;
+            background: rgba(85, 162, 3, 0.15);
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            border-radius: 50px;
+            color: var(--secondary-orange);
+            text-decoration: none;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            animation: slideInRight 0.6s ease 2.2s forwards;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            pointer-events: auto;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .back-home:hover {
+            background: rgba(85, 162, 3, 0.25);
+            border-color: var(--secondary-orange);
+            transform: scale(1.05);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(26,26,26,0.9) 100%);
+            overflow: hidden;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.pinimg.com/736x/d8/a3/bc/d8a3bcbd9f842d82f426b21a143a76bd.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: var(--font-corporate);
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            color: var(--secondary-orange);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-secondary);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-light-green);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--secondary-orange) 0%, #fd8f00 100%);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all var(--transition-fast);
+            box-shadow: 0 10px 30px rgba(252, 158, 7, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(252, 158, 7, 0.5);
+        }
+
+        /* ==================== FILTERS ==================== */
+        .filters-section {
+            padding: 3rem 2rem;
+            background: rgba(26, 26, 26, 0.5);
+            border-bottom: 1px solid rgba(85, 162, 3, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .filters-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-family: var(--font-corporate);
+            font-weight: 700;
+            color: var(--light-text);
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(85, 162, 3, 0.1);
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            border-radius: 50px;
+            color: var(--gray-text);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .filter-btn:hover {
+            background: rgba(85, 162, 3, 0.2);
+            border-color: var(--primary-light-green);
+            color: var(--light-text);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-light-green));
+            border-color: var(--primary-light-green);
+            color: var(--dark-bg);
+        }
+
+        /* ==================== PROJECTS GRID ==================== */
+        .projects-section {
+            padding: 4rem 2rem;
+            min-height: 60vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 2px solid rgba(85, 162, 3, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-orange);
+            box-shadow: 0 20px 50px rgba(85, 162, 3, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+
+        .status-pozo {
+            background: rgba(248, 239, 12, 0.3);
+            color: var(--accent-yellow);
+            border: 2px solid var(--accent-yellow);
+        }
+
+        .status-ejecucion {
+            background: rgba(252, 158, 7, 0.3);
+            color: var(--secondary-orange);
+            border: 2px solid var(--secondary-orange);
+        }
+
+        .status-finalizado {
+            background: rgba(140, 213, 29, 0.3);
+            color: var(--primary-light-green);
+            border: 2px solid var(--primary-light-green);
+        }
+
+        .project-type-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            background: rgba(85, 162, 3, 0.3);
+            color: var(--primary-light-green);
+            border: 2px solid var(--primary-light-green);
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-title {
+            font-family: var(--font-corporate);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-location {
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .project-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(85, 162, 3, 0.05);
+            border-radius: 10px;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .spec-label {
+            font-family: var(--font-secondary);
+            font-size: 0.75rem;
+            color: var(--gray-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            font-family: var(--font-corporate);
+            font-size: 1rem;
+            color: var(--light-text);
+            font-weight: 700;
+        }
+
+        /* ==================== EXPANDABLE BUTTONS ==================== */
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-project {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-project i {
+            transition: transform var(--transition-fast);
+        }
+
+        .btn-project:active {
+            transform: scale(0.95);
+        }
+
+        /* BOTÓN DETALLES - EXPANDIBLE */
+        .btn-details {
+            background: linear-gradient(135deg, var(--secondary-orange), #fd8f00);
+            color: var(--dark-bg);
+        }
+
+        .btn-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(252, 158, 7, 0.4);
+        }
+
+        .btn-details:hover i {
+            transform: rotate(90deg);
+        }
+
+        /* BOTÓN BROCHURE - EXPANDIBLE */
+        .btn-brochure {
+            background: rgba(85, 162, 3, 0.2);
+            color: var(--primary-light-green);
+            border: 2px solid var(--primary-light-green);
+        }
+
+        .btn-brochure:hover {
+            background: rgba(85, 162, 3, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(85, 162, 3, 0.3);
+        }
+
+        .btn-brochure:hover i {
+            transform: scale(1.2) translateX(2px);
+        }
+
+        /* ==================== NO RESULTS ==================== */
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: var(--font-corporate);
+            font-size: 1.5rem;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            color: var(--gray-dark);
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: rgba(26, 26, 26, 0.95);
+            border-top: 1px solid rgba(85, 162, 3, 0.2);
+            padding: 3rem 2rem;
+            color: var(--gray-text);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+            font-family: var(--font-secondary);
+        }
+
+        .footer-bottom a {
+            color: var(--secondary-orange);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--primary-light-green);
+        }
+
+        /* ==================== BROCHURE SECTION ==================== */
+        .brochure-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(85, 162, 3, 0.05) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border-top: 2px solid rgba(85, 162, 3, 0.3);
+            border-bottom: 2px solid rgba(85, 162, 3, 0.3);
+        }
+
+        .brochure-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brochure-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .brochure-header h2 {
+            font-family: var(--font-corporate);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+
+        .brochure-header h2 span {
+            color: var(--secondary-orange);
+        }
+
+        .brochure-header p {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .brochure-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .brochure-card {
+            background: rgba(26, 26, 26, 0.7);
+            border: 2px solid rgba(85, 162, 3, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brochure-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-orange), var(--primary-light-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-smooth);
+        }
+
+        .brochure-card:hover {
+            border-color: var(--secondary-orange);
+            background: rgba(26, 26, 26, 0.95);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(85, 162, 3, 0.2);
+        }
+
+        .brochure-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .brochure-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-orange);
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: all var(--transition-fast);
+        }
+
+        .brochure-card:hover .brochure-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--primary-light-green);
+        }
+
+        .brochure-card h3 {
+            font-family: var(--font-corporate);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+
+        .brochure-card p {
+            color: var(--gray-text);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .brochure-features {
+            background: rgba(26, 26, 26, 0.7);
+            border: 2px solid rgba(85, 162, 3, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .brochure-features h3 {
+            font-family: var(--font-corporate);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(85, 162, 3, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary-orange);
+            transition: all var(--transition-fast);
+        }
+
+        .feature-item:hover {
+            background: rgba(85, 162, 3, 0.12);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            color: var(--primary-light-green);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .feature-text h4 {
+            font-family: var(--font-corporate);
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .brochure-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .cta-button {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all var(--transition-fast);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--secondary-orange), #fd8f00);
+            color: var(--dark-bg);
+            box-shadow: 0 10px 30px rgba(252, 158, 7, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(252, 158, 7, 0.5);
+        }
+
+        .cta-secondary {
+            background: rgba(85, 162, 3, 0.2);
+            color: var(--primary-light-green);
+            border: 2px solid var(--primary-light-green);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(85, 162, 3, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(85, 162, 3, 0.2);
+        }
+
+        /* ==================== WHATSAPP BUTTON ==================== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #20BA58);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: all var(--transition-fast);
+            z-index: 999;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.15) rotate(15deg);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .logo-circle {
+                width: 70px;
+                height: 70px;
+            }
+
+            .logo-circle img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .back-home {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-features {
+                gap: 1rem;
+            }
+
+            .filters-section {
+                padding: 2rem 1rem;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .btn-project {
+                padding: 1rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .filter-btn {
+                font-size: 0.8rem;
+                padding: 0.7rem 1.2rem;
+            }
+
+            .project-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-project {
+                font-size: 0.8rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BORDES ANIMADOS -->
+<div class="animated-border animated-border-left"></div>
+<div class="animated-border animated-border-right"></div>
+
+<!-- SPLASH SCREEN -->
+<div class="splash-screen" id="splashScreen">
+    <div class="splash-logo-circle">
+        <img src="https://i.pinimg.com/736x/17/ab/b9/17abb909c0d4c30191b969f6cd81d533.jpg" alt="Sinergia Logo" class="splash-logo">
+    </div>
+    <div class="loading-text" id="loadingText">0%</div>
+</div>
+
+<!-- HEADER -->
+<nav class="header-nav">
+    <a href="index.html" class="logo-circle" title="Volver al inicio">
+        <img src="https://i.pinimg.com/736x/17/ab/b9/17abb909c0d4c30191b969f6cd81d533.jpg" alt="Logo Sinergia">
+    </a>
+    <a href="index.html" class="back-home">
+        <i class="fas fa-home"></i> Volver al Inicio
+    </a>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Construí con quienes aseguran <span>calidad, plazo y valor</span> en el tiempo</h1>
+        <p class="hero-subtitle">
+            Sinergia Desarrolladora: obra llave en mano en Salta, con dirección técnica, materiales certificados (con respaldo de Don Coco) y plan de pagos por avance de obra.
+        </p>
+        <div class="hero-features">
+            <div class="hero-feature">
+                <i class="fas fa-check-circle"></i>
+                Sistema tradicional y Steel Framing
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-check-circle"></i>
+                Planos + aprobación municipal incluidos
+            </div>
+            <div class="hero-feature">
+                <i class="fas fa-check-circle"></i>
+                Cotización con memoria de calidades
+            </div>
+        </div>
+        <a href="#proyectos" class="hero-cta">
+            <i class="fas fa-building"></i>
+            Explorá nuestros proyectos
+        </a>
+    </div>
+</section>
+
+<!-- FILTERS -->
+<div class="filters-section">
+    <div class="filters-container">
+        <div class="filter-group">
+            <span class="filter-label">Tipo:</span>
+            <button class="filter-btn active" data-filter="all" data-type="type">Todos</button>
+            <button class="filter-btn" data-filter="propio" data-type="type">Propios</button>
+            <button class="filter-btn" data-filter="tercero" data-type="type">Terceros</button>
+        </div>
+        
+        <div class="filter-group">
+            <span class="filter-label">Estado:</span>
+            <button class="filter-btn active" data-filter="all" data-type="status">Todos</button>
+            <button class="filter-btn" data-filter="pozo" data-type="status">En Pozo</button>
+            <button class="filter-btn" data-filter="ejecucion" data-type="status">En Ejecución</button>
+            <button class="filter-btn" data-filter="finalizado" data-type="status">Finalizados</button>
+        </div>
+    </div>
+</div>
+
+<!-- PROJECTS SECTION -->
+<section class="projects-section" id="proyectos">
+    <div class="container">
+        <div class="projects-grid" id="projectsGrid">
+            <!-- EKO DISTRITO -->
+            <div class="project-card" data-type="propio" data-status="ejecucion">
+                <div class="project-image">
+                    <img src="https://i.pinimg.com/736x/0e/c7/cf/0ec7cfefea05dd3dd7a112382abbe893.jpg" alt="EKO Distrito">
+                    <div class="project-type-badge">PROPIO</div>
+                    <div class="project-status status-ejecucion">EN EJECUCIÓN</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">EKO Distrito</h3>
+                    <p class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Zona Centro, Salta
+                    </p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Superficie</span>
+                            <span class="spec-value">85 m²</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Sistema</span>
+                            <span class="spec-value">Tradicional</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Inversión</span>
+                            <span class="spec-value">Consultar</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Avance</span>
+                            <span class="spec-value">Planos</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn-project btn-details">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Detalles</span>
+                        </a>
+                        <a href="#" class="btn-project btn-brochure">
+                            <i class="fas fa-file-download"></i>
+                            <span>Brochure</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REFORMA INTEGRAL -->
+            <div class="project-card" data-type="tercero" data-status="finalizado">
+                <div class="project-image">
+                    <img src="https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg" alt="Reforma Integral">
+                    <div class="project-type-badge">TERCERO</div>
+                    <div class="project-status status-finalizado">FINALIZADO</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Reforma Integral - Vivienda Familiar</h3>
+                    <p class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Zona Sur, Salta
+                    </p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Superficie</span>
+                            <span class="spec-value">150 m²</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Sistema</span>
+                            <span class="spec-value">Tradicional</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Inversión</span>
+                            <span class="spec-value">Finalizado</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Avance</span>
+                            <span class="spec-value">100%</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn-project btn-details">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Detalles</span>
+                        </a>
+                        <a href="#" class="btn-project btn-brochure">
+                            <i class="fas fa-file-download"></i>
+                            <span>Brochure</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DÚPLEX PREMIUM -->
+            <div class="project-card" data-type="propio" data-status="ejecucion">
+                <div class="project-image">
+                    <img src="https://i.pinimg.com/736x/d8/a3/bc/d8a3bcbd9f842d82f426b21a143a76bd.jpg" alt="Dúplex Premium">
+                    <div class="project-type-badge">PROPIO</div>
+                    <div class="project-status status-ejecucion">EN EJECUCIÓN</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Dúplex Premium</h3>
+                    <p class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Zona Oeste, Salta
+                    </p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Superficie</span>
+                            <span class="spec-value">180 m²</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Sistema</span>
+                            <span class="spec-value">Steel Framing</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Inversión</span>
+                            <span class="spec-value">Consultar</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Avance</span>
+                            <span class="spec-value">45%</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn-project btn-details">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Detalles</span>
+                        </a>
+                        <a href="#" class="btn-project btn-brochure">
+                            <i class="fas fa-file-download"></i>
+                            <span>Brochure</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CASA MODERNA -->
+            <div class="project-card" data-type="tercero" data-status="pozo">
+                <div class="project-image">
+                    <img src="https://i.pinimg.com/736x/5a/07/fc/5a07fcd1bba65ee56c38d814c7250532.jpg" alt="Casa Moderna">
+                    <div class="project-type-badge">TERCERO</div>
+                    <div class="project-status status-pozo">EN POZO</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Casa Moderna - Diseño Custom</h3>
+                    <p class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Country, Salta
+                    </p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Superficie</span>
+                            <span class="spec-value">220 m²</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Sistema</span>
+                            <span class="spec-value">Tradicional</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Inversión</span>
+                            <span class="spec-value">Consultar</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Avance</span>
+                            <span class="spec-value">Planos</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn-project btn-details">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Detalles</span>
+                        </a>
+                        <a href="#" class="btn-project btn-brochure">
+                            <i class="fas fa-file-download"></i>
+                            <span>Brochure</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDIFICIO RESIDENCIAL -->
+            <div class="project-card" data-type="propio" data-status="finalizado">
+                <div class="project-image">
+                    <img src="https://i.pinimg.com/736x/40/f7/08/40f708069694ffa200ce6959dcab51d2.jpg" alt="Edificio Residencial">
+                    <div class="project-type-badge">PROPIO</div>
+                    <div class="project-status status-finalizado">FINALIZADO</div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Edificio Residencial</h3>
+                    <p class="project-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Centro, Salta
+                    </p>
+                    <div class="project-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Superficie</span>
+                            <span class="spec-value">65 m²/u</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Sistema</span>
+                            <span class="spec-value">Tradicional</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Inversión</span>
+                            <span class="spec-value">Vendido</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Avance</span>
+                            <span class="spec-value">100%</span>
+                        </div>
+                    </div>
+                    <div class="project-actions">
+                        <a href="#" class="btn-project btn-details">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Detalles</span>
+                        </a>
+                        <a href="#" class="btn-project btn-brochure">
+                            <i class="fas fa-file-download"></i>
+                            <span>Brochure</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NO RESULTS MESSAGE -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3>No se encontraron proyectos</h3>
+            <p>Intenta cambiar los filtros para ver más resultados</p>
+        </div>
+    </div>
+</section>
+
+<!-- BROCHURE SECTION -->
+<section class="brochure-section" id="brochure">
+    <div class="brochure-container">
+        <!-- BROCHURE HEADER -->
+        <div class="brochure-header">
+            <h2>Conocé más sobre <span>Sinergia Desarrolladora</span></h2>
+            <p>Experiencia, profesionalismo y transparencia en cada proyecto. Descubrí por qué somos la mejor opción para tu inversión en construcción.</p>
+        </div>
+
+        <!-- BROCHURE MAIN CARDS -->
+        <div class="brochure-content">
+            <!-- CARD 1: QUIÉNES SOMOS -->
+            <div class="brochure-card">
+                <i class="fas fa-building brochure-icon"></i>
+                <h3>¿Quiénes Somos?</h3>
+                <p>Sinergia Desarrolladora es una empresa constructora con más de 15 años de experiencia en Salta. Nos especializamos en obras llave en mano con los más altos estándares de calidad, cumplimiento de plazos y transparencia con nuestros clientes.</p>
+            </div>
+
+            <!-- CARD 2: EXPERIENCIA -->
+            <div class="brochure-card">
+                <i class="fas fa-chart-line brochure-icon"></i>
+                <h3>Nuestra Trayectoria</h3>
+                <p>Más de 50 proyectos completados. Desde viviendas unifamiliares hasta edificios residenciales. Trabajamos con sistemas constructivos tradicionales y steel framing, adaptándonos a cada necesidad específica del cliente.</p>
+            </div>
+
+            <!-- CARD 3: CALIDAD -->
+            <div class="brochure-card">
+                <i class="fas fa-certificate brochure-icon"></i>
+                <h3>Garantía de Calidad</h3>
+                <p>Materiales certificados con respaldo de Don Coco. Dirección técnica permanente. Control de calidad en cada etapa. Mano de obra especializada. Documentación completa y legalizaciones incluidas.</p>
+            </div>
+        </div>
+
+        <!-- FEATURES SECTION -->
+        <div class="brochure-features">
+            <h3>Nuestros Servicios Integrales</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Diseño y Planos</h4>
+                        <p>Elaboración de planos profesionales y gestión de aprobaciones municipales incluidas en el presupuesto.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Construcción Llave en Mano</h4>
+                        <p>Nos encargamos de todo: desde cimientos hasta terminaciones finales. Obra completa y lista para ocupar.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Planes de Pago Flexibles</h4>
+                        <p>Financiación por avance de obra. Cuotas que se adecúan al ritmo de construcción. Transparencia total en costos.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Atención Personalizada</h4>
+                        <p>Proyecto dedicado. Contacto directo con dirección técnica. Seguimiento permanente de tu obra.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Garantía Post Obra</h4>
+                        <p>Respaldo y garantía en todas las prestaciones. Mantenimiento post-venta y asistencia técnica.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h4>Legalidad Total</h4>
+                        <p>Todos los papeles en orden. Responsabilidad civil incluida. Seguros y protecciones necesarias.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA BUTTONS -->
+            <div class="brochure-cta">
+                <a href="https://wa.me/5493872233151" class="cta-button cta-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Consultar Presupuesto
+                </a>
+                <button class="cta-button cta-secondary" onclick="alert('Formulario de contacto')">
+                    <i class="fas fa-envelope"></i>
+                    Solicitar Información
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sinergia Desarrolladora. Todos los derechos reservados. | Salta, Argentina</p>
+            <p>Creado por <a href="https://septimapacha.com" target="_blank">Séptima Pacha Co.</a></p>
+        </div>
+    </div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/5493872233151" class="whatsapp-btn" target="_blank" title="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    // ========== SPLASH SCREEN ==========
+    window.addEventListener('load', () => {
+        const splash = document.getElementById('splashScreen');
+        const loadingText = document.getElementById('loadingText');
+        let progress = 0;
+        
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                loadingText.textContent = '100%';
+                
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                }, 600);
+            }
+            loadingText.textContent = Math.floor(progress) + '%';
+        }, 100);
+    });
+
+    // ========== FILTER SYSTEM ==========
+    let currentTypeFilter = 'all';
+    let currentStatusFilter = 'all';
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    const noResults = document.getElementById('noResults');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filterType = button.getAttribute('data-type');
+            const filterValue = button.getAttribute('data-filter');
+            
+            // Update active state for buttons of the same type
+            document.querySelectorAll(`[data-type="${filterType}"]`).forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            // Update current filters
+            if (filterType === 'type') {
+                currentTypeFilter = filterValue;
+            } else if (filterType === 'status') {
+                currentStatusFilter = filterValue;
+            }
+            
+            // Apply filters
+            applyFilters();
+        });
+    });
+
+    function applyFilters() {
+        let visibleCount = 0;
+        
+        projectCards.forEach(card => {
+            const cardType = card.getAttribute('data-type');
+            const cardStatus = card.getAttribute('data-status');
+            
+            const typeMatch = currentTypeFilter === 'all' || cardType === currentTypeFilter;
+            const statusMatch = currentStatusFilter === 'all' || cardStatus === currentStatusFilter;
+            
+            if (typeMatch && statusMatch) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Show/hide no results message
+        if (visibleCount === 0) {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    }
+
+    // ========== SMOOTH SCROLL ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && document.querySelector(href)) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // ========== INITIAL LOAD ==========
+    document.addEventListener('DOMContentLoaded', () => {
+        applyFilters();
+    });
+</script>
+</body>
+</html>
