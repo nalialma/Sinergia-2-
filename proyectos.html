@@ -483,55 +483,125 @@
 
         /* ==================== FILTERS ==================== */
         .filters-section {
-            padding: 3rem 2rem;
+            padding: 1.2rem 2rem;
             background: rgba(26, 26, 26, 0.5);
             border-bottom: 1px solid rgba(85, 162, 3, 0.2);
             position: sticky;
             top: 80px;
             z-index: 100;
             backdrop-filter: blur(10px);
+            transition: all var(--transition-smooth);
+            max-height: 70px;
+            overflow: hidden;
+        }
+
+        .filters-section.expanded {
+            max-height: 350px;
+            padding: 1.5rem 2rem;
         }
 
         .filters-container {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+        }
+
+        .filters-toggle {
+            width: 36px;
+            height: 36px;
+            background: rgba(85, 162, 3, 0.15);
+            border: 1px solid rgba(85, 162, 3, 0.3);
+            border-radius: 8px;
+            color: var(--primary-light-green);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .filters-toggle:hover {
+            background: rgba(85, 162, 3, 0.25);
+            border-color: var(--secondary-orange);
+            color: var(--secondary-orange);
+        }
+
+        .filters-toggle.active {
+            background: rgba(85, 162, 3, 0.3);
+            border-color: var(--primary-light-green);
+            transform: rotate(180deg);
+        }
+
+        .filters-title {
+            font-family: var(--font-corporate);
+            font-weight: 700;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .filters-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            animation: slideDown 0.3s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .filter-group {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             align-items: center;
         }
 
         .filter-label {
-            font-family: var(--font-corporate);
-            font-weight: 700;
-            color: var(--light-text);
-            font-size: 1rem;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            color: var(--gray-dark);
+            font-size: 0.8rem;
             white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .filter-btn {
-            padding: 0.8rem 1.5rem;
-            background: rgba(85, 162, 3, 0.1);
-            border: 2px solid rgba(85, 162, 3, 0.3);
+            padding: 0.5rem 1rem;
+            background: rgba(85, 162, 3, 0.08);
+            border: 1px solid rgba(85, 162, 3, 0.2);
             border-radius: 50px;
             color: var(--gray-text);
             font-family: var(--font-secondary);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all var(--transition-fast);
         }
 
         .filter-btn:hover {
-            background: rgba(85, 162, 3, 0.2);
+            background: rgba(85, 162, 3, 0.15);
             border-color: var(--primary-light-green);
             color: var(--light-text);
         }
@@ -540,6 +610,7 @@
             background: linear-gradient(135deg, var(--primary-green), var(--primary-light-green));
             border-color: var(--primary-light-green);
             color: var(--dark-bg);
+            font-weight: 700;
         }
 
         /* ==================== PROJECTS GRID ==================== */
@@ -1052,6 +1123,120 @@
             box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
         }
 
+        /* ==================== EXPANDABLE MENU ==================== */
+        .expandable-menu {
+            position: fixed;
+            left: 20px;
+            bottom: 120px;
+            z-index: 998;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all var(--transition-fast);
+            pointer-events: none;
+        }
+
+        .expandable-menu.active .menu-items {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .menu-item {
+            width: 55px;
+            height: 55px;
+            background: rgba(85, 162, 3, 0.15);
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-light-green);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-item:hover {
+            background: rgba(85, 162, 3, 0.25);
+            border-color: var(--secondary-orange);
+            color: var(--secondary-orange);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(252, 158, 7, 0.3);
+        }
+
+        .menu-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-light-green));
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: 0 8px 25px rgba(85, 162, 3, 0.3);
+            z-index: 10;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.12);
+            box-shadow: 0 12px 35px rgba(85, 162, 3, 0.4);
+        }
+
+        .menu-toggle.active {
+            background: linear-gradient(135deg, var(--secondary-orange), #fd8f00);
+            box-shadow: 0 8px 25px rgba(252, 158, 7, 0.4);
+        }
+
+        .menu-toggle i {
+            transition: transform var(--transition-fast);
+        }
+
+        .menu-toggle.active i {
+            transform: rotate(45deg);
+        }
+
+        .menu-label {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.9);
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-fast);
+            border: 1px solid rgba(85, 162, 3, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-item:hover .menu-label {
+            opacity: 1;
+        }
+
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
             .projects-grid {
@@ -1069,6 +1254,28 @@
         }
 
         @media (max-width: 768px) {
+            .expandable-menu {
+                left: 15px;
+                bottom: 100px;
+            }
+
+            .menu-toggle {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+
+            .menu-item {
+                width: 50px;
+                height: 50px;
+                font-size: 1.1rem;
+            }
+
+            .menu-label {
+                font-size: 0.7rem;
+                padding: 0.4rem 0.8rem;
+            }
+
             .header-nav {
                 padding: 0 1rem;
             }
@@ -1100,12 +1307,19 @@
             }
 
             .filters-section {
-                padding: 2rem 1rem;
+                padding: 1rem 1rem;
+            }
+
+            .filters-section.expanded {
+                padding: 1.2rem 1rem;
             }
 
             .filters-container {
-                flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+
+            .filters-content {
+                grid-template-columns: 1fr;
             }
 
             .projects-grid {
@@ -1146,7 +1360,7 @@
 
             .filter-btn {
                 font-size: 0.8rem;
-                padding: 0.7rem 1.2rem;
+                padding: 0.5rem 0.9rem;
             }
 
             .project-specs {
@@ -1160,6 +1374,10 @@
 
             .header-title-main {
                 font-size: 1rem;
+            }
+
+            .filters-title {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -1194,19 +1412,11 @@
         </div>
     </div>
 
-    <!-- LADO DERECHO: MENÚ DE NAVEGACIÓN (DESKTOP) -->
-   
-       
-       
-        
-    </div>
-
     <!-- HAMBURGER MENU (MOBILE) -->
     <button class="hamburger" id="hamburgerBtn">
-        
-        <span><a href="https://wa.me/5493872233151" target="_blank">Contacto</a></span>
-        <span> <a href="#brochure">Brochure</a></span>
-        <span> <a href="#proyectos">Proyectos</a></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </button>
 </nav>
 
@@ -1248,21 +1458,30 @@
 </section>
 
 <!-- FILTERS -->
-<div class="filters-section">
+<div class="filters-section" id="filtersSection">
     <div class="filters-container">
-        <div class="filter-group">
-            <span class="filter-label">Tipo:</span>
-            <button class="filter-btn active" data-filter="all" data-type="type">Todos</button>
-            <button class="filter-btn" data-filter="propio" data-type="type">Propios</button>
-            <button class="filter-btn" data-filter="tercero" data-type="type">Terceros</button>
+        <div class="filters-header">
+            <span class="filters-title"><i class="fas fa-sliders-h"></i> Filtrar Proyectos</span>
+            <button class="filters-toggle" id="filtersToggle">
+                <i class="fas fa-chevron-down"></i>
+            </button>
         </div>
         
-        <div class="filter-group">
-            <span class="filter-label">Estado:</span>
-            <button class="filter-btn active" data-filter="all" data-type="status">Todos</button>
-            <button class="filter-btn" data-filter="pozo" data-type="status">En Pozo</button>
-            <button class="filter-btn" data-filter="ejecucion" data-type="status">En Ejecución</button>
-            <button class="filter-btn" data-filter="finalizado" data-type="status">Finalizados</button>
+        <div class="filters-content">
+            <div class="filter-group">
+                <span class="filter-label">Tipo:</span>
+                <button class="filter-btn active" data-filter="all" data-type="type">Todos</button>
+                <button class="filter-btn" data-filter="propio" data-type="type">Propios</button>
+                <button class="filter-btn" data-filter="tercero" data-type="type">Terceros</button>
+            </div>
+            
+            <div class="filter-group">
+                <span class="filter-label">Estado:</span>
+                <button class="filter-btn active" data-filter="all" data-type="status">Todos</button>
+                <button class="filter-btn" data-filter="pozo" data-type="status">En Pozo</button>
+                <button class="filter-btn" data-filter="ejecucion" data-type="status">En Ejecución</button>
+                <button class="filter-btn" data-filter="finalizado" data-type="status">Finalizados</button>
+            </div>
         </div>
     </div>
 </div>
@@ -1315,27 +1534,27 @@
                 </div>
             </div>
 
-            <!-- REFORMA INTEGRAL -->
-            <div class="project-card" data-type="tercero" data-status="finalizado">
+            <!-- VÍA AURELIA -->
+            <div class="project-card" data-type="propio" data-status="finalizado">
                 <div class="project-image">
-                    <img src="https://i.pinimg.com/736x/90/52/d0/9052d02125f1cbec4fa2bfc81f460849.jpg" alt="Reforma Integral">
-                    <div class="project-type-badge">TERCERO</div>
+                    <img src="https://i.pinimg.com/736x/d8/a3/bc/d8a3bcbd9f842d82f426b21a143a76bd.jpg" alt="Vía Aurelia">
+                    <div class="project-type-badge">PROPIO</div>
                     <div class="project-status status-finalizado">FINALIZADO</div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Reforma Integral - Vivienda Familiar</h3>
+                    <h3 class="project-title">Vía Aurelia</h3>
                     <p class="project-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        Zona Sur, Salta
+                        Zona Residencial, Salta
                     </p>
                     <div class="project-specs">
                         <div class="spec-item">
                             <span class="spec-label">Superficie</span>
-                            <span class="spec-value">150 m²</span>
+                            <span class="spec-value">200 m²</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Sistema</span>
-                            <span class="spec-value">Tradicional</span>
+                            <span class="spec-value">Steel Framing</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Inversión</span>
@@ -1359,119 +1578,31 @@
                 </div>
             </div>
 
-            <!-- DÚPLEX PREMIUM -->
-            <div class="project-card" data-type="propio" data-status="ejecucion">
+            <!-- ESTUDIO ARQUITECTA SARAVIA - DUPLEX CAUSE VIVO -->
+            <div class="project-card" data-type="tercero" data-status="finalizado">
                 <div class="project-image">
-                    <img src="https://i.pinimg.com/736x/d8/a3/bc/d8a3bcbd9f842d82f426b21a143a76bd.jpg" alt="Dúplex Premium">
-                    <div class="project-type-badge">PROPIO</div>
-                    <div class="project-status status-ejecucion">EN EJECUCIÓN</div>
+                    <img src="https://i.pinimg.com/736x/d6/1c/7f/d61c7fe0a6cbe23bdba20b6d195f4576.jpg" alt="Duplex Cause Vivo">
+                    <div class="project-type-badge">TERCERO</div>
+                    <div class="project-status status-pozo">POZO</div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Dúplex Premium</h3>
+                    <h3 class="project-title">Duplex Cause Vivo</h3>
                     <p class="project-location">
                         <i class="fas fa-map-marker-alt"></i>
-                        Zona Oeste, Salta
+                        Zona Residencial, Salta
                     </p>
                     <div class="project-specs">
                         <div class="spec-item">
                             <span class="spec-label">Superficie</span>
-                            <span class="spec-value">180 m²</span>
+                            <span class="spec-value">200 m²</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Sistema</span>
                             <span class="spec-value">Steel Framing</span>
                         </div>
                         <div class="spec-item">
-                            <span class="spec-label">Inversión</span>
-                            <span class="spec-value">Consultar</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Avance</span>
-                            <span class="spec-value">45%</span>
-                        </div>
-                    </div>
-                    <div class="project-actions">
-                        <a href="#" class="btn-project btn-details">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Detalles</span>
-                        </a>
-                        <a href="#" class="btn-project btn-brochure">
-                            <i class="fas fa-file-download"></i>
-                            <span>Brochure</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CASA MODERNA -->
-            <div class="project-card" data-type="tercero" data-status="pozo">
-                <div class="project-image">
-                    <img src="https://i.pinimg.com/736x/5a/07/fc/5a07fcd1bba65ee56c38d814c7250532.jpg" alt="Casa Moderna">
-                    <div class="project-type-badge">TERCERO</div>
-                    <div class="project-status status-pozo">EN POZO</div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Casa Moderna - Diseño Custom</h3>
-                    <p class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Country, Salta
-                    </p>
-                    <div class="project-specs">
-                        <div class="spec-item">
-                            <span class="spec-label">Superficie</span>
-                            <span class="spec-value">220 m²</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Sistema</span>
-                            <span class="spec-value">Tradicional</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Inversión</span>
-                            <span class="spec-value">Consultar</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Avance</span>
-                            <span class="spec-value">Planos</span>
-                        </div>
-                    </div>
-                    <div class="project-actions">
-                        <a href="#" class="btn-project btn-details">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Detalles</span>
-                        </a>
-                        <a href="#" class="btn-project btn-brochure">
-                            <i class="fas fa-file-download"></i>
-                            <span>Brochure</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- EDIFICIO RESIDENCIAL -->
-            <div class="project-card" data-type="propio" data-status="finalizado">
-                <div class="project-image">
-                    <img src="https://i.pinimg.com/736x/40/f7/08/40f708069694ffa200ce6959dcab51d2.jpg" alt="Edificio Residencial">
-                    <div class="project-type-badge">PROPIO</div>
-                    <div class="project-status status-finalizado">FINALIZADO</div>
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Edificio Residencial</h3>
-                    <p class="project-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Centro, Salta
-                    </p>
-                    <div class="project-specs">
-                        <div class="spec-item">
-                            <span class="spec-label">Superficie</span>
-                            <span class="spec-value">65 m²/u</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Sistema</span>
-                            <span class="spec-value">Tradicional</span>
-                        </div>
-                        <div class="spec-item">
-                            <span class="spec-label">Inversión</span>
-                            <span class="spec-value">Vendido</span>
+                            <span class="spec-label">Arquitecta</span>
+                            <span class="spec-value">Saravia</span>
                         </div>
                         <div class="spec-item">
                             <span class="spec-label">Avance</span>
@@ -1483,16 +1614,15 @@
                             <i class="fas fa-info-circle"></i>
                             <span>Detalles</span>
                         </a>
-                        <a href="#" class="btn-project btn-brochure">
+                        <a href="https://pin.it/3ax5bW12q" class="btn-project btn-brochure" target="_blank">
                             <i class="fas fa-file-download"></i>
-                            <span>Brochure</span>
+                            <span>Galería</span>
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- NO RESULTS MESSAGE -->
+            <!-- NO RESULTS MESSAGE -->
         <div class="no-results" id="noResults" style="display: none;">
             <div class="no-results-icon">
                 <i class="fas fa-search"></i>
@@ -1626,12 +1756,64 @@
     </div>
 </footer>
 
+<!-- EXPANDABLE MENU -->
+<div class="expandable-menu" id="expandableMenu">
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-plus"></i>
+    </button>
+    <div class="menu-items">
+        <a href="#proyectos" class="menu-item" title="Ver Proyectos">
+            <i class="fas fa-building"></i>
+            <span class="menu-label">Proyectos</span>
+        </a>
+        <a href="#brochure" class="menu-item" title="Ver Brochure">
+            <i class="fas fa-file-pdf"></i>
+            <span class="menu-label">Brochure</span>
+        </a>
+        <a href="https://wa.me/5493872233151" class="menu-item" target="_blank" title="Contactar por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="menu-label">WhatsApp</span>
+        </a>
+        <a href="index.html" class="menu-item" title="Volver al inicio">
+            <i class="fas fa-home"></i>
+            <span class="menu-label">Inicio</span>
+        </a>
+    </div>
+</div>
+
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/5493872233151" class="whatsapp-btn" target="_blank" title="Contactar por WhatsApp">
     <i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
+    // ========== EXPANDABLE MENU ==========
+    const menuToggle = document.getElementById('menuToggle');
+    const expandableMenu = document.getElementById('expandableMenu');
+    const menuItems = expandableMenu.querySelectorAll('.menu-item');
+
+    // Abrir/Cerrar menú
+    menuToggle.addEventListener('click', () => {
+        expandableMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un item
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            expandableMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!expandableMenu.contains(e.target)) {
+            expandableMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    });
+
     // ========== SPLASH SCREEN ==========
     window.addEventListener('load', () => {
         const splash = document.getElementById('splashScreen');
@@ -1680,6 +1862,15 @@
             mobileNav.classList.add('hidden');
             navOverlay.classList.remove('active');
         });
+    });
+
+    // ========== EXPANDABLE FILTERS ==========
+    const filtersToggle = document.getElementById('filtersToggle');
+    const filtersSection = document.getElementById('filtersSection');
+
+    filtersToggle.addEventListener('click', () => {
+        filtersSection.classList.toggle('expanded');
+        filtersToggle.classList.toggle('active');
     });
 
     // ========== FILTER SYSTEM ==========
