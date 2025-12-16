@@ -1541,10 +1541,13 @@
 
 
 /* Estilos principales del botón */
-.proyectos-btn {
-    position: absolute;
-    right: 30px;
-    bottom: 40px;
+
+
+        .proyectos-btn {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    align-self: flex-start;
     z-index: 100;
     padding: 12px 28px;
     border: none;
@@ -1561,14 +1564,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     overflow: hidden;
-    position: relative;
     transition: all 0.3s ease;
     background: rgba(252, 158, 7, 0.1);
     color: var(--secondary-orange);
     border: 2px solid rgba(252, 158, 7, 0.4);
     backdrop-filter: blur(10px);
 }
-
 /* Pseudo-elemento para efecto hover deslizante */
 .proyectos-btn::before {
     content: '';
@@ -1612,6 +1613,17 @@
     }
 }
 
+
+    
+    .hero-projects {
+        gap: 1rem;
+    }
+
+    .proyectos-btn {
+        align-self: center;
+        width: fit-content;
+    }
+}
 /* ==================== RESPONSIVE - MÓVIL ==================== */
 @media (max-width: 480px) {
     .proyectos-btn {
