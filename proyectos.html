@@ -654,6 +654,7 @@
             height: 250px;
             overflow: hidden;
             position: relative;
+            cursor: pointer;
         }
 
         .project-image img {
@@ -1237,6 +1238,224 @@
             opacity: 1;
         }
 
+        /* ==================== MODAL CARRUSEL ==================== */
+        .modal-gallery {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .modal-gallery.active {
+            display: flex;
+        }
+
+        .modal-gallery-content {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: rgba(26, 26, 26, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.3s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.67%;
+            overflow: hidden;
+        }
+
+        .gallery-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-bg);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CONTROLES DEL CARRUSEL */
+        .gallery-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(10, 10, 10, 0.7);
+        }
+
+        .gallery-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(85, 162, 3, 0.2);
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            border-radius: 50%;
+            color: var(--primary-light-green);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .gallery-btn:hover {
+            background: rgba(85, 162, 3, 0.3);
+            border-color: var(--secondary-orange);
+            color: var(--secondary-orange);
+            transform: scale(1.1);
+        }
+
+        .gallery-btn.close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 45px;
+            height: 45px;
+            background: rgba(252, 158, 7, 0.2);
+            border-color: rgba(252, 158, 7, 0.4);
+            color: var(--secondary-orange);
+            z-index: 10;
+        }
+
+        .gallery-btn.close-btn:hover {
+            background: rgba(252, 158, 7, 0.3);
+        }
+
+        .gallery-counter {
+            font-family: var(--font-corporate);
+            color: var(--light-text);
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: center;
+            flex: 1;
+        }
+
+        .gallery-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(10, 10, 10, 0.7);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(85, 162, 3, 0.3);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: 2px solid rgba(85, 162, 3, 0.2);
+        }
+
+        .dot.active {
+            background: var(--primary-light-green);
+            transform: scale(1.2);
+            border-color: var(--primary-light-green);
+        }
+
+        .dot:hover {
+            background: rgba(85, 162, 3, 0.5);
+        }
+
+        /* RESPONSIVE CARRUSEL */
+        @media (max-width: 768px) {
+            .modal-gallery {
+                padding: 1rem;
+            }
+
+            .modal-gallery-content {
+                border-radius: 15px;
+            }
+
+            .gallery-controls {
+                padding: 1rem;
+                gap: 0.5rem;
+            }
+
+            .gallery-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .gallery-btn.close-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .gallery-counter {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-controls {
+                padding: 0.8rem;
+            }
+
+            .gallery-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .gallery-counter {
+                font-size: 0.8rem;
+            }
+
+            .gallery-dots {
+                padding: 0.8rem;
+                gap: 0.4rem;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 1024px) {
             .projects-grid {
@@ -1581,9 +1800,9 @@
             <!-- ESTUDIO ARQUITECTA SARAVIA - DUPLEX CAUSE VIVO -->
             <div class="project-card" data-type="tercero" data-status="finalizado">
                 <div class="project-image">
-                    <img src="https://i.pinimg.com/736x/d6/1c/7f/d61c7fe0a6cbe23bdba20b6d195f4576.jpg" alt="Duplex Cause Vivo">
+                    <img src="https://i.pinimg.com/736x/e8/d5/c7/e8d5c76a5d9e7c4b8a2f6e3d1c9b5a7.jpg" alt="Duplex Cause Vivo">
                     <div class="project-type-badge">TERCERO</div>
-                    <div class="project-status status-pozo">POZO</div>
+                    <div class="project-status status-finalizado">FINALIZADO</div>
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">Duplex Cause Vivo</h3>
@@ -1745,6 +1964,37 @@
         </div>
     </div>
 </section>
+
+<!-- MODAL GALERÍA -->
+<div class="modal-gallery" id="modalGallery">
+    <div class="modal-gallery-content">
+        <button class="gallery-btn close-btn" id="closeGallery">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="gallery-container">
+            <div class="gallery-images" id="galleryImages">
+                <!-- Las imágenes se insertan aquí con JavaScript -->
+            </div>
+        </div>
+
+        <div class="gallery-controls">
+            <button class="gallery-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <span class="gallery-counter">
+                <span id="currentImage">1</span> / <span id="totalImages">5</span>
+            </span>
+            <button class="gallery-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="gallery-dots" id="galleryDots">
+            <!-- Los puntos se insertan aquí con JavaScript -->
+        </div>
+    </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -1947,6 +2197,145 @@
     // ========== INITIAL LOAD ==========
     document.addEventListener('DOMContentLoaded', () => {
         applyFilters();
+        initializeGallery();
+    });
+
+    // ========== MODAL GALLERY ==========
+    // Imágenes de cada proyecto (5 imágenes por proyecto)
+    const projectImages = {
+        'EKO Distrito': [
+            'https://i.pinimg.com/736x/08/f2/c1/08f2c1b41a7a647b65de448520384a7c.jpg',
+            'https://i.pinimg.com/736x/ec/ac/4e/ecac4e6f81868a79b1a15fcc77fe39e9.jpg',
+            'https://i.pinimg.com/736x/a2/43/3a/a2433aad825e17d367a71e62e5c36868.jpg',
+            'https://i.pinimg.com/736x/61/bc/94/61bc949c21d240463f2cfe52621ca556.jpg',
+            'https://i.pinimg.com/736x/3e/35/d6/3e35d61f505592db45431ef4f0310c82.jpg'
+        ],
+        'Vía Aurelia': [
+            'https://i.pinimg.com/736x/e4/69/52/e4695224551f1eff67f530072f99c217.jpg',
+            'https://i.pinimg.com/736x/40/f7/08/40f708069694ffa200ce6959dcab51d2.jpg',
+            'https://i.pinimg.com/736x/5a/07/fc/5a07fcd1bba65ee56c38d814c7250532.jpg',
+            'https://i.pinimg.com/736x/a7/92/8b/a7928b6c5d4e3f2a1b0c9d8e7f6a5b4.jpg',
+            'https://i.pinimg.com/736x/96/81/7a/96817a5b4c3d2e1f0a9b8c7d6e5f4a3.jpg'
+        ],
+        'Duplex Cause Vivo': [
+            'https://i.pinimg.com/736x/d6/1c/7f/d61c7fe0a6cbe23bdba20b6d195f4576.jpg',
+            'https://i.pinimg.com/736x/d5/00/f2/d500f2531cc5d32ad5cfa19a083e69ad.jpg',
+            'https://i.pinimg.com/474x/c2/3e/22/c23e2260dfc6392feed4a2f48447d740.jpg',
+            'https://i.pinimg.com/736x/10/e6/c7/10e6c71b08e4c4e5163eaefc75672ac2.jpg',
+            'https://i.pinimg.com/736x/a8/6a/84/a86a8493ec334280e2831dcbfc9b963e.jpg'
+        ]
+    };
+
+    let currentGalleryIndex = 0;
+    let currentProjectName = '';
+
+    // Inicializar galería
+    function initializeGallery() {
+        const projectImages_elements = document.querySelectorAll('.project-image');
+        projectImages_elements.forEach(element => {
+            element.addEventListener('click', openGallery);
+        });
+    }
+
+    // Abrir galería
+    function openGallery(e) {
+        const projectCard = e.currentTarget.closest('.project-card');
+        const projectTitle = projectCard.querySelector('.project-title').textContent;
+        
+        currentProjectName = projectTitle;
+        currentGalleryIndex = 0;
+        
+        // Obtener imágenes del proyecto
+        const images = projectImages[projectTitle] || [];
+        
+        // Crear elementos de imagen
+        const galleryImagesContainer = document.getElementById('galleryImages');
+        galleryImagesContainer.innerHTML = '';
+        
+        images.forEach((img) => {
+            const imageDiv = document.createElement('div');
+            imageDiv.className = 'gallery-image';
+            imageDiv.innerHTML = `<img src="${img}" alt="${projectTitle}">`;
+            galleryImagesContainer.appendChild(imageDiv);
+        });
+        
+        // Crear puntos indicadores
+        const galleryDots = document.getElementById('galleryDots');
+        galleryDots.innerHTML = '';
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (index === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToSlide(index));
+            galleryDots.appendChild(dot);
+        });
+        
+        // Actualizar contador
+        document.getElementById('totalImages').textContent = images.length;
+        updateGallery();
+        
+        // Mostrar modal
+        document.getElementById('modalGallery').classList.add('active');
+    }
+
+    // Actualizar posición del carrusel
+    function updateGallery() {
+        const galleryImages = document.getElementById('galleryImages');
+        const offset = currentGalleryIndex * 100;
+        galleryImages.style.transform = `translateX(-${offset}%)`;
+        
+        document.getElementById('currentImage').textContent = currentGalleryIndex + 1;
+        
+        // Actualizar puntos
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentGalleryIndex);
+        });
+    }
+
+    // Ir a slide específico
+    function goToSlide(index) {
+        const totalImages = document.querySelectorAll('.gallery-image').length;
+        currentGalleryIndex = index % totalImages;
+        updateGallery();
+    }
+
+    // Siguiente imagen
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery-image').length;
+        currentGalleryIndex = (currentGalleryIndex + 1) % totalImages;
+        updateGallery();
+    });
+
+    // Imagen anterior
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery-image').length;
+        currentGalleryIndex = (currentGalleryIndex - 1 + totalImages) % totalImages;
+        updateGallery();
+    });
+
+    // Cerrar galería
+    document.getElementById('closeGallery').addEventListener('click', () => {
+        document.getElementById('modalGallery').classList.remove('active');
+    });
+
+    // Cerrar galería al hacer clic en el fondo
+    document.getElementById('modalGallery').addEventListener('click', (e) => {
+        if (e.target.id === 'modalGallery') {
+            document.getElementById('modalGallery').classList.remove('active');
+        }
+    });
+
+    // Navegar con teclas de flecha
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('modalGallery');
+        if (modal.classList.contains('active')) {
+            if (e.key === 'ArrowRight') {
+                document.getElementById('nextBtn').click();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById('prevBtn').click();
+            } else if (e.key === 'Escape') {
+                document.getElementById('closeGallery').click();
+            }
+        }
     });
 </script>
 </body>
