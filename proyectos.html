@@ -839,6 +839,131 @@
             transform: scale(1.2) translateX(2px);
         }
 
+        /* ==================== MODAL DETALLES ==================== */
+        .modal-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease forwards;
+            overflow-y: auto;
+        }
+
+        .modal-details.active {
+            display: flex;
+        }
+
+        .modal-details-content {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 2px solid rgba(85, 162, 3, 0.3);
+            backdrop-filter: blur(20px);
+            animation: slideUp 0.4s ease forwards;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-details-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .modal-details-title {
+            font-family: var(--font-corporate);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--light-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-details-subtitle {
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            color: var(--secondary-orange);
+            font-weight: 600;
+        }
+
+        .modal-details-body {
+            margin-bottom: 2rem;
+        }
+
+        .modal-details-text {
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+            color: var(--gray-text);
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(85, 162, 3, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary-orange);
+        }
+
+        .modal-details-cta {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .btn-whatsapp-modal {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #25D366, #20BA58);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all var(--transition-fast);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp-modal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-whatsapp-modal i {
+            font-size: 1.3rem;
+        }
+
+        .btn-close-details {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 45px;
+            height: 45px;
+            background: rgba(252, 158, 7, 0.2);
+            border: 2px solid rgba(252, 158, 7, 0.4);
+            border-radius: 50%;
+            color: var(--secondary-orange);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all var(--transition-fast);
+        }
+
+        .btn-close-details:hover {
+            background: rgba(252, 158, 7, 0.3);
+            transform: rotate(90deg);
+        }
+
         /* ==================== NO RESULTS ==================== */
         .no-results {
             text-align: center;
@@ -1303,6 +1428,7 @@
             height: 100%;
             flex-shrink: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: var(--dark-bg);
@@ -1310,8 +1436,31 @@
 
         .gallery-image img {
             width: 100%;
-            height: 100%;
+            height: calc(100% - 80px);
             object-fit: cover;
+        }
+
+        .gallery-caption {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(10, 10, 10, 0.9);
+            text-align: center;
+            border-top: 1px solid rgba(85, 162, 3, 0.2);
+        }
+
+        .gallery-caption-title {
+            font-family: var(--font-corporate);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary-orange);
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-caption-desc {
+            font-family: var(--font-secondary);
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            line-height: 1.4;
         }
 
         /* CONTROLES DEL CARRUSEL */
@@ -1428,6 +1577,18 @@
             .gallery-counter {
                 font-size: 0.9rem;
             }
+
+            .gallery-caption {
+                padding: 0.8rem 1rem;
+            }
+
+            .gallery-caption-title {
+                font-size: 1rem;
+            }
+
+            .gallery-caption-desc {
+                font-size: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1453,6 +1614,14 @@
             .dot {
                 width: 10px;
                 height: 10px;
+            }
+
+            .gallery-caption-title {
+                font-size: 0.9rem;
+            }
+
+            .gallery-caption-desc {
+                font-size: 0.75rem;
             }
         }
 
@@ -1566,6 +1735,19 @@
                 bottom: 20px;
                 right: 20px;
             }
+
+            .modal-details-content {
+                padding: 2rem;
+            }
+
+            .modal-details-title {
+                font-size: 1.5rem;
+            }
+
+            .btn-whatsapp-modal {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1597,6 +1779,24 @@
 
             .filters-title {
                 font-size: 0.8rem;
+            }
+
+            .modal-details-content {
+                padding: 1.5rem;
+            }
+
+            .modal-details-title {
+                font-size: 1.3rem;
+            }
+
+            .modal-details-text {
+                font-size: 0.9rem;
+                padding: 1rem;
+            }
+
+            .btn-whatsapp-modal {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -1640,7 +1840,7 @@
 </nav>
 
 <!-- MENÚ MÓVIL EXPANDIBLE -->
-<div class="mobile-nav" id="mobileNav">
+<div class="mobile-nav hidden" id="mobileNav">
     <a href="#proyectos"><i class="fas fa-building"></i> Proyectos</a>
     <a href="#brochure"><i class="fas fa-info-circle"></i> Brochure</a>
     <div class="mobile-nav-divider"></div>
@@ -1710,9 +1910,9 @@
     <div class="container">
         <div class="projects-grid" id="projectsGrid">
             <!-- EKO DISTRITO -->
-            <div class="project-card" data-type="propio" data-status="ejecucion">
+            <div class="project-card" data-type="propio" data-status="ejecucion" data-project="EKO Distrito">
                 <div class="project-image">
-                    <img src="https://i.pinimg.com/736x/0e/c7/cf/0ec7cfefea05dd3dd7a112382abbe893.jpg" alt="EKO Distrito">
+                    <img src="https://i.pinimg.com/736x/27/c9/73/27c9731ceb1f6dd7f37dc8c11d2cb359.jpg" alt="EKO Distrito">
                     <div class="project-type-badge">PROPIO</div>
                     <div class="project-status status-ejecucion">EN EJECUCIÓN</div>
                 </div>
@@ -1741,20 +1941,20 @@
                         </div>
                     </div>
                     <div class="project-actions">
-                        <a href="#" class="btn-project btn-details">
+                        <button class="btn-project btn-details" data-project="EKO Distrito">
                             <i class="fas fa-info-circle"></i>
                             <span>Detalles</span>
-                        </a>
-                        <a href="#" class="btn-project btn-brochure">
-                            <i class="fas fa-file-download"></i>
-                            <span>Brochure</span>
-                        </a>
+                        </button>
+                        <button class="btn-project btn-brochure" data-project="EKO Distrito">
+                            <i class="fas fa-images"></i>
+                            <span>Galería</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- VÍA AURELIA -->
-            <div class="project-card" data-type="propio" data-status="finalizado">
+            <div class="project-card" data-type="propio" data-status="finalizado" data-project="Vía Aurelia">
                 <div class="project-image">
                     <img src="https://i.pinimg.com/736x/d8/a3/bc/d8a3bcbd9f842d82f426b21a143a76bd.jpg" alt="Vía Aurelia">
                     <div class="project-type-badge">PROPIO</div>
@@ -1785,20 +1985,20 @@
                         </div>
                     </div>
                     <div class="project-actions">
-                        <a href="#" class="btn-project btn-details">
+                        <button class="btn-project btn-details" data-project="Vía Aurelia">
                             <i class="fas fa-info-circle"></i>
                             <span>Detalles</span>
-                        </a>
-                        <a href="#" class="btn-project btn-brochure">
-                            <i class="fas fa-file-download"></i>
-                            <span>Brochure</span>
-                        </a>
+                        </button>
+                        <button class="btn-project btn-brochure" data-project="Vía Aurelia">
+                            <i class="fas fa-images"></i>
+                            <span>Galería</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <!-- ESTUDIO ARQUITECTA SARAVIA - DUPLEX CAUSE VIVO -->
-            <div class="project-card" data-type="tercero" data-status="finalizado">
+            <div class="project-card" data-type="tercero" data-status="finalizado" data-project="Duplex Cause Vivo">
                 <div class="project-image">
                     <img src="https://i.pinimg.com/736x/d6/1c/7f/d61c7fe0a6cbe23bdba20b6d195f4576.jpg" alt="Duplex Cause Vivo">
                     <div class="project-type-badge">TERCERO</div>
@@ -1829,19 +2029,20 @@
                         </div>
                     </div>
                     <div class="project-actions">
-                        <a href="#" class="btn-project btn-details">
+                        <button class="btn-project btn-details" data-project="Duplex Cause Vivo">
                             <i class="fas fa-info-circle"></i>
                             <span>Detalles</span>
-                        </a>
-                        <a href="https://pin.it/3ax5bW12q" class="btn-project btn-brochure" target="_blank">
-                            <i class="fas fa-file-download"></i>
+                        </button>
+                        <button class="btn-project btn-brochure" data-project="Duplex Cause Vivo">
+                            <i class="fas fa-images"></i>
                             <span>Galería</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- NO RESULTS MESSAGE -->
+        <!-- NO RESULTS MESSAGE -->
         <div class="no-results" id="noResults" style="display: none;">
             <div class="no-results-icon">
                 <i class="fas fa-search"></i>
@@ -1965,6 +2166,33 @@
     </div>
 </section>
 
+<!-- MODAL DETALLES -->
+<div class="modal-details" id="modalDetails">
+    <div class="modal-details-content">
+        <button class="btn-close-details" id="closeDetails">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="modal-details-header">
+            <h2 class="modal-details-title" id="detailsTitle">Nombre del Proyecto</h2>
+            <p class="modal-details-subtitle" id="detailsSubtitle">Subtítulo del proyecto</p>
+        </div>
+
+        <div class="modal-details-body">
+            <p class="modal-details-text" id="detailsText">
+                Descripción detallada del proyecto aquí...
+            </p>
+        </div>
+
+        <div class="modal-details-cta">
+            <a href="https://wa.me/5493872233151" class="btn-whatsapp-modal" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                Consultar por WhatsApp
+            </a>
+        </div>
+    </div>
+</div>
+
 <!-- MODAL GALERÍA -->
 <div class="modal-gallery" id="modalGallery">
     <div class="modal-gallery-content">
@@ -1983,7 +2211,7 @@
                 <i class="fas fa-chevron-left"></i>
             </button>
             <span class="gallery-counter">
-                <span id="currentImage">1</span> / <span id="totalImages">5</span>
+                <span id="currentImage">1</span> / <span id="totalImages">7</span>
             </span>
             <button class="gallery-btn" id="nextBtn">
                 <i class="fas fa-chevron-right"></i>
@@ -2037,18 +2265,130 @@
 </a>
 
 <script>
+    // ========== DATOS DE PROYECTOS ==========
+    const projectData = {
+        'EKO Distrito': {
+            title: 'EKO Distrito',
+            subtitle: 'Vivienda moderna en zona céntrica',
+            description: 'Proyecto de vivienda unifamiliar de 85m² con diseño moderno y funcional. Sistema constructivo tradicional con materiales de primera calidad. Incluye 2 dormitorios, 1 baño completo, cocina integrada al living-comedor, y patio con galería cubierta. Ubicado en zona céntrica con excelente conectividad y servicios.'
+        },
+        'Vía Aurelia': {
+            title: 'Vía Aurelia',
+            subtitle: 'Vivienda steel framing de 200m²',
+            description: 'Proyecto ejecutado con sistema Steel Framing de 200m² distribuidos en dos plantas. Cuenta con 3 dormitorios en suite, living-comedor amplio, cocina moderna, quincho cubierto y piscina. Terminaciones premium con pisos de porcelanato, aberturas de aluminio y diseño arquitectónico contemporáneo.'
+        },
+        'Duplex Cause Vivo': {
+            title: 'Duplex Cause Vivo',
+            subtitle: 'Proyecto Arq. Saravia - Steel Framing',
+            description: 'Duplex de 200m² diseñado por la Arquitecta Saravia y ejecutado con sistema Steel Framing. Cada unidad cuenta con 2 dormitorios, 2 baños, living-comedor integrado, cocina equipada y patio privado. Construcción sustentable con excelente aislación térmica y acústica. Finalizado con total satisfacción del cliente.'
+        }
+    };
+
+    // ========== IMÁGENES DE PROYECTOS CON TÍTULOS Y DESCRIPCIONES ==========
+    const projectImages = {
+        'EKO Distrito': [
+            {
+                url: 'https://i.pinimg.com/736x/3c/71/d1/3c71d1b738e9e5fc4f81dcd1ecc72ea7.jpg',
+                title: 'Baño',
+                description: 'Baño completo con sanitarios de primera calidad y revestimientos modernos'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/8b/eb/bc/8bebbc88555b26b06a06a64ba9303d74.jpg',
+                title: 'Sala de estar',
+                description: 'Amplio living comedor con excelente iluminación natural'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/16/f5/59/16f559c4e4c2c9b88f50d1f6d67ec2e1.jpg',
+                title: 'Habitación 2',
+                description: 'Dormitorio secundario con armario empotrado'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/27/c9/73/27c9731ceb1f6dd7f37dc8c11d2cb359.jpg',
+                title: 'Fachada',
+                description: 'Fachada moderna con líneas contemporáneas'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/b8/ba/7c/b8ba7ca4adccb4fdbf5c3e5a31e2d8c5.jpg',
+                title: 'Habitación 1',
+                description: 'Dormitorio principal con baño en suite'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/dc/0f/df/dc0fdfdc2e3e5a8decc50cd8d8c8c5c4.jpg',
+                title: 'Cocina',
+                description: 'Cocina integrada con mesada de granito y muebles bajo mesada'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/d0/9e/1d/d09e1df8f2d6e3c5b4a392817f6e5d4c.jpg',
+                title: 'Contrafachada',
+                description: 'Vista posterior con patio y galería cubierta'
+            }
+        ],
+        'Vía Aurelia': [
+            {
+                url: 'https://i.pinimg.com/736x/e4/69/52/e4695224551f1eff67f530072f99c217.jpg',
+                title: 'Fachada Principal',
+                description: 'Diseño moderno con sistema Steel Framing'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/40/f7/08/40f708069694ffa200ce6959dcab51d2.jpg',
+                title: 'Living Principal',
+                description: 'Espacio amplio con doble altura'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/5a/07/fc/5a07fcd1bba65ee56c38d814c7250532.jpg',
+                title: 'Cocina Integrada',
+                description: 'Diseño contemporáneo con isla central'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/a7/92/8b/a7928b6c5d4e3f2a1b0c9d8e7f6a5b4.jpg',
+                title: 'Dormitorio Suite',
+                description: 'Habitación principal con vestidor y baño privado'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/96/81/7a/96817a5b4c3d2e1f0a9b8c7d6e5f4a3.jpg',
+                title: 'Área de Piscina',
+                description: 'Quincho cubierto y espacio recreativo'
+            }
+        ],
+        'Duplex Cause Vivo': [
+            {
+                url: 'https://i.pinimg.com/736x/d6/1c/7f/d61c7fe0a6cbe23bdba20b6d195f4576.jpg',
+                title: 'Vista Frontal',
+                description: 'Duplex moderno con terminaciones premium'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/d5/00/f2/d500f2531cc5d32ad5cfa19a083e69ad.jpg',
+                title: 'Interior Living',
+                description: 'Espacio diáfano con excelente luminosidad'
+            },
+            {
+                url: 'https://i.pinimg.com/474x/c2/3e/22/c23e2260dfc6392feed4a2f48447d740.jpg',
+                title: 'Cocina Moderna',
+                description: 'Equipamiento completo y diseño funcional'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/10/e6/c7/10e6c71b08e4c4e5163eaefc75672ac2.jpg',
+                title: 'Dormitorio Principal',
+                description: 'Ambiente confortable con placard empotrado'
+            },
+            {
+                url: 'https://i.pinimg.com/736x/a8/6a/84/a86a8493ec334280e2831dcbfc9b963e.jpg',
+                title: 'Patio Privado',
+                description: 'Espacio exterior exclusivo para cada unidad'
+            }
+        ]
+    };
+
     // ========== EXPANDABLE MENU ==========
     const menuToggle = document.getElementById('menuToggle');
     const expandableMenu = document.getElementById('expandableMenu');
     const menuItems = expandableMenu.querySelectorAll('.menu-item');
 
-    // Abrir/Cerrar menú
     menuToggle.addEventListener('click', () => {
         expandableMenu.classList.toggle('active');
         menuToggle.classList.toggle('active');
     });
 
-    // Cerrar menú al hacer clic en un item
     menuItems.forEach(item => {
         item.addEventListener('click', () => {
             expandableMenu.classList.remove('active');
@@ -2056,7 +2396,6 @@
         });
     });
 
-    // Cerrar menú al hacer clic fuera
     document.addEventListener('click', (e) => {
         if (!expandableMenu.contains(e.target)) {
             expandableMenu.classList.remove('active');
@@ -2091,21 +2430,18 @@
     const navOverlay = document.getElementById('navOverlay');
     const navLinks = mobileNav.querySelectorAll('a');
 
-    // Abrir/Cerrar menú
     hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('active');
         mobileNav.classList.toggle('hidden');
         navOverlay.classList.toggle('active');
     });
 
-    // Cerrar menú al hacer clic en overlay
     navOverlay.addEventListener('click', () => {
         hamburgerBtn.classList.remove('active');
         mobileNav.classList.add('hidden');
         navOverlay.classList.remove('active');
     });
 
-    // Cerrar menú al hacer clic en un enlace
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             hamburgerBtn.classList.remove('active');
@@ -2136,20 +2472,17 @@
             const filterType = button.getAttribute('data-type');
             const filterValue = button.getAttribute('data-filter');
             
-            // Update active state for buttons of the same type
             document.querySelectorAll(`[data-type="${filterType}"]`).forEach(btn => {
                 btn.classList.remove('active');
             });
             button.classList.add('active');
             
-            // Update current filters
             if (filterType === 'type') {
                 currentTypeFilter = filterValue;
             } else if (filterType === 'status') {
                 currentStatusFilter = filterValue;
             }
             
-            // Apply filters
             applyFilters();
         });
     });
@@ -2172,13 +2505,154 @@
             }
         });
         
-        // Show/hide no results message
         if (visibleCount === 0) {
             noResults.style.display = 'block';
         } else {
             noResults.style.display = 'none';
         }
     }
+
+    // ========== MODAL DETALLES ==========
+    const modalDetails = document.getElementById('modalDetails');
+    const closeDetails = document.getElementById('closeDetails');
+    const detailsButtons = document.querySelectorAll('.btn-details');
+
+    detailsButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectName = button.getAttribute('data-project');
+            const data = projectData[projectName];
+            
+            if (data) {
+                document.getElementById('detailsTitle').textContent = data.title;
+                document.getElementById('detailsSubtitle').textContent = data.subtitle;
+                document.getElementById('detailsText').textContent = data.description;
+                modalDetails.classList.add('active');
+            }
+        });
+    });
+
+    closeDetails.addEventListener('click', () => {
+        modalDetails.classList.remove('active');
+    });
+
+    modalDetails.addEventListener('click', (e) => {
+        if (e.target.id === 'modalDetails') {
+            modalDetails.classList.remove('active');
+        }
+    });
+
+    // ========== MODAL GALLERY ==========
+    let currentGalleryIndex = 0;
+    let currentProjectName = '';
+
+    function initializeGallery() {
+        const brochureButtons = document.querySelectorAll('.btn-brochure');
+        brochureButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const projectName = button.getAttribute('data-project');
+                openGallery(projectName);
+            });
+        });
+    }
+
+    function openGallery(projectName) {
+        currentProjectName = projectName;
+        currentGalleryIndex = 0;
+        
+        const images = projectImages[projectName] || [];
+        
+        const galleryImagesContainer = document.getElementById('galleryImages');
+        galleryImagesContainer.innerHTML = '';
+        
+        images.forEach((imgData) => {
+            const imageDiv = document.createElement('div');
+            imageDiv.className = 'gallery-image';
+            imageDiv.innerHTML = `
+                <img src="${imgData.url}" alt="${imgData.title}">
+                <div class="gallery-caption">
+                    <div class="gallery-caption-title">${imgData.title}</div>
+                    <div class="gallery-caption-desc">${imgData.description}</div>
+                </div>
+            `;
+            galleryImagesContainer.appendChild(imageDiv);
+        });
+        
+        const galleryDots = document.getElementById('galleryDots');
+        galleryDots.innerHTML = '';
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (index === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToSlide(index));
+            galleryDots.appendChild(dot);
+        });
+        
+        document.getElementById('totalImages').textContent = images.length;
+        updateGallery();
+        
+        document.getElementById('modalGallery').classList.add('active');
+    }
+
+    function updateGallery() {
+        const galleryImages = document.getElementById('galleryImages');
+        const offset = currentGalleryIndex * 100;
+        galleryImages.style.transform = `translateX(-${offset}%)`;
+        
+        document.getElementById('currentImage').textContent = currentGalleryIndex + 1;
+        
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentGalleryIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        const totalImages = document.querySelectorAll('.gallery-image').length;
+        currentGalleryIndex = index % totalImages;
+        updateGallery();
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery-image').length;
+        currentGalleryIndex = (currentGalleryIndex + 1) % totalImages;
+        updateGallery();
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery-image').length;
+        currentGalleryIndex = (currentGalleryIndex - 1 + totalImages) % totalImages;
+        updateGallery();
+    });
+
+    document.getElementById('closeGallery').addEventListener('click', () => {
+        document.getElementById('modalGallery').classList.remove('active');
+    });
+
+    document.getElementById('modalGallery').addEventListener('click', (e) => {
+        if (e.target.id === 'modalGallery') {
+            document.getElementById('modalGallery').classList.remove('active');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        const modal = document.getElementById('modalGallery');
+        if (modal.classList.contains('active')) {
+            if (e.key === 'ArrowRight') {
+                document.getElementById('nextBtn').click();
+            } else if (e.key === 'ArrowLeft') {
+                document.getElementById('prevBtn').click();
+            } else if (e.key === 'Escape') {
+                document.getElementById('closeGallery').click();
+            }
+        }
+        
+        const modalDet = document.getElementById('modalDetails');
+        if (modalDet.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                document.getElementById('closeDetails').click();
+            }
+        }
+    });
 
     // ========== SMOOTH SCROLL ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2198,144 +2672,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         applyFilters();
         initializeGallery();
-    });
-
-    // ========== MODAL GALLERY ==========
-    // Imágenes de cada proyecto (5 imágenes por proyecto)
-    const projectImages = {
-        'EKO Distrito': [
-            'https://i.pinimg.com/736x/08/f2/c1/08f2c1b41a7a647b65de448520384a7c.jpg',
-            'https://i.pinimg.com/736x/ec/ac/4e/ecac4e6f81868a79b1a15fcc77fe39e9.jpg',
-            'https://i.pinimg.com/736x/a2/43/3a/a2433aad825e17d367a71e62e5c36868.jpg',
-            'https://i.pinimg.com/736x/61/bc/94/61bc949c21d240463f2cfe52621ca556.jpg',
-            'https://i.pinimg.com/736x/3e/35/d6/3e35d61f505592db45431ef4f0310c82.jpg'
-        ],
-        'Vía Aurelia': [
-            'https://i.pinimg.com/736x/e4/69/52/e4695224551f1eff67f530072f99c217.jpg',
-            'https://i.pinimg.com/736x/40/f7/08/40f708069694ffa200ce6959dcab51d2.jpg',
-            'https://i.pinimg.com/736x/5a/07/fc/5a07fcd1bba65ee56c38d814c7250532.jpg',
-            'https://i.pinimg.com/736x/a7/92/8b/a7928b6c5d4e3f2a1b0c9d8e7f6a5b4.jpg',
-            'https://i.pinimg.com/736x/96/81/7a/96817a5b4c3d2e1f0a9b8c7d6e5f4a3.jpg'
-        ],
-        'Duplex Cause Vivo': [
-            'https://i.pinimg.com/736x/d6/1c/7f/d61c7fe0a6cbe23bdba20b6d195f4576.jpg',
-            'https://i.pinimg.com/736x/d5/00/f2/d500f2531cc5d32ad5cfa19a083e69ad.jpg',
-            'https://i.pinimg.com/474x/c2/3e/22/c23e2260dfc6392feed4a2f48447d740.jpg',
-            'https://i.pinimg.com/736x/10/e6/c7/10e6c71b08e4c4e5163eaefc75672ac2.jpg',
-            'https://i.pinimg.com/736x/a8/6a/84/a86a8493ec334280e2831dcbfc9b963e.jpg'
-        ]
-    };
-
-    let currentGalleryIndex = 0;
-    let currentProjectName = '';
-
-    // Inicializar galería
-    function initializeGallery() {
-        const projectImages_elements = document.querySelectorAll('.project-image');
-        projectImages_elements.forEach(element => {
-            element.addEventListener('click', openGallery);
-        });
-    }
-
-    // Abrir galería
-    function openGallery(e) {
-        const projectCard = e.currentTarget.closest('.project-card');
-        const projectTitle = projectCard.querySelector('.project-title').textContent;
-        
-        currentProjectName = projectTitle;
-        currentGalleryIndex = 0;
-        
-        // Obtener imágenes del proyecto
-        const images = projectImages[projectTitle] || [];
-        
-        // Crear elementos de imagen
-        const galleryImagesContainer = document.getElementById('galleryImages');
-        galleryImagesContainer.innerHTML = '';
-        
-        images.forEach((img) => {
-            const imageDiv = document.createElement('div');
-            imageDiv.className = 'gallery-image';
-            imageDiv.innerHTML = `<img src="${img}" alt="${projectTitle}">`;
-            galleryImagesContainer.appendChild(imageDiv);
-        });
-        
-        // Crear puntos indicadores
-        const galleryDots = document.getElementById('galleryDots');
-        galleryDots.innerHTML = '';
-        images.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.className = 'dot' + (index === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(index));
-            galleryDots.appendChild(dot);
-        });
-        
-        // Actualizar contador
-        document.getElementById('totalImages').textContent = images.length;
-        updateGallery();
-        
-        // Mostrar modal
-        document.getElementById('modalGallery').classList.add('active');
-    }
-
-    // Actualizar posición del carrusel
-    function updateGallery() {
-        const galleryImages = document.getElementById('galleryImages');
-        const offset = currentGalleryIndex * 100;
-        galleryImages.style.transform = `translateX(-${offset}%)`;
-        
-        document.getElementById('currentImage').textContent = currentGalleryIndex + 1;
-        
-        // Actualizar puntos
-        document.querySelectorAll('.dot').forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentGalleryIndex);
-        });
-    }
-
-    // Ir a slide específico
-    function goToSlide(index) {
-        const totalImages = document.querySelectorAll('.gallery-image').length;
-        currentGalleryIndex = index % totalImages;
-        updateGallery();
-    }
-
-    // Siguiente imagen
-    document.getElementById('nextBtn').addEventListener('click', () => {
-        const totalImages = document.querySelectorAll('.gallery-image').length;
-        currentGalleryIndex = (currentGalleryIndex + 1) % totalImages;
-        updateGallery();
-    });
-
-    // Imagen anterior
-    document.getElementById('prevBtn').addEventListener('click', () => {
-        const totalImages = document.querySelectorAll('.gallery-image').length;
-        currentGalleryIndex = (currentGalleryIndex - 1 + totalImages) % totalImages;
-        updateGallery();
-    });
-
-    // Cerrar galería
-    document.getElementById('closeGallery').addEventListener('click', () => {
-        document.getElementById('modalGallery').classList.remove('active');
-    });
-
-    // Cerrar galería al hacer clic en el fondo
-    document.getElementById('modalGallery').addEventListener('click', (e) => {
-        if (e.target.id === 'modalGallery') {
-            document.getElementById('modalGallery').classList.remove('active');
-        }
-    });
-
-    // Navegar con teclas de flecha
-    document.addEventListener('keydown', (e) => {
-        const modal = document.getElementById('modalGallery');
-        if (modal.classList.contains('active')) {
-            if (e.key === 'ArrowRight') {
-                document.getElementById('nextBtn').click();
-            } else if (e.key === 'ArrowLeft') {
-                document.getElementById('prevBtn').click();
-            } else if (e.key === 'Escape') {
-                document.getElementById('closeGallery').click();
-            }
-        }
     });
 </script>
 </body>
