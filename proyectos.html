@@ -589,6 +589,45 @@
             z-index: 2;
         }
 
+        .project-sale-badge {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-family: var(--font-corporate);
+            font-weight: 900;
+            font-size: 0.85rem;
+            background: rgba(252, 158, 7, 0.95);
+            color: var(--dark-bg);
+            border: 2px solid var(--secondary-orange);
+            backdrop-filter: blur(10px);
+            z-index: 2;
+            box-shadow: 0 5px 20px rgba(252, 158, 7, 0.4);
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(252, 158, 7, 0.4); }
+            50% { box-shadow: 0 5px 30px rgba(252, 158, 7, 0.6); }
+        }
+
+        .project-delivery-badge {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            font-size: 0.75rem;
+            background: rgba(140, 213, 29, 0.3);
+            color: var(--primary-light-green);
+            border: 2px solid var(--primary-light-green);
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+
         .project-content {
             padding: 2.5rem;
             flex: 1;
@@ -1101,8 +1140,9 @@
             z-index: 2000;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 1rem;
             animation: fadeIn 0.3s ease forwards;
+            overflow-y: auto;
         }
 
         .modal-gallery.active {
@@ -1112,13 +1152,14 @@
         .modal-gallery-content {
             position: relative;
             width: 100%;
-            max-width: 900px;
-            background: rgba(26, 26, 26, 0.9);
+            max-width: 1000px;
+            background: rgba(26, 26, 26, 0.95);
             border-radius: 20px;
             overflow: hidden;
             border: 2px solid rgba(85, 162, 3, 0.3);
             backdrop-filter: blur(10px);
             animation: slideUp 0.3s ease forwards;
+            margin: auto;
         }
 
         @keyframes slideUp {
@@ -1132,11 +1173,27 @@
             }
         }
 
+        .gallery-header {
+            padding: 1.5rem 2rem;
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(85, 162, 3, 0.2);
+        }
+
+        .gallery-title {
+            font-family: var(--font-corporate);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--light-text);
+            margin: 0;
+            padding-right: 3rem;
+        }
+
         .gallery-container {
             position: relative;
             width: 100%;
-            padding-bottom: 66.67%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             overflow: hidden;
+            background: var(--dark-bg);
         }
 
         .gallery-images {
@@ -1154,15 +1211,36 @@
             height: 100%;
             flex-shrink: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background: var(--dark-bg);
+            padding: 2rem;
         }
 
         .gallery-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .gallery-image-title {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 10, 0.9);
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            color: var(--light-text);
+            font-size: 1rem;
+            border: 1px solid rgba(85, 162, 3, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 90%;
+            text-align: center;
         }
 
         /* CONTROLES DEL CARRUSEL */
@@ -1171,7 +1249,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem;
-            background: rgba(10, 10, 10, 0.7);
+            background: rgba(10, 10, 10, 0.8);
+            gap: 1rem;
         }
 
         .gallery-btn {
@@ -1199,8 +1278,8 @@
 
         .gallery-btn.close-btn {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             width: 45px;
             height: 45px;
             background: rgba(252, 158, 7, 0.2);
@@ -1227,7 +1306,8 @@
             gap: 0.5rem;
             justify-content: center;
             padding: 1rem;
-            background: rgba(10, 10, 10, 0.7);
+            background: rgba(10, 10, 10, 0.8);
+            flex-wrap: wrap;
         }
 
         .dot {
@@ -1502,11 +1582,30 @@
         /* RESPONSIVE CARRUSEL */
         @media (max-width: 768px) {
             .modal-gallery {
-                padding: 1rem;
+                padding: 0.5rem;
             }
 
             .modal-gallery-content {
                 border-radius: 15px;
+                max-width: 100%;
+            }
+
+            .gallery-header {
+                padding: 1rem 1.5rem;
+            }
+
+            .gallery-title {
+                font-size: 1.2rem;
+            }
+
+            .gallery-image {
+                padding: 1rem;
+            }
+
+            .gallery-image-title {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+                bottom: 1rem;
             }
 
             .gallery-controls {
@@ -1523,14 +1622,38 @@
             .gallery-btn.close-btn {
                 width: 40px;
                 height: 40px;
+                top: 1rem;
+                right: 1rem;
             }
 
             .gallery-counter {
                 font-size: 0.9rem;
             }
+
+            .gallery-container {
+                padding-bottom: 75%; /* Más alto en móvil */
+            }
         }
 
         @media (max-width: 480px) {
+            .gallery-header {
+                padding: 0.8rem 1rem;
+            }
+
+            .gallery-title {
+                font-size: 1rem;
+            }
+
+            .gallery-image {
+                padding: 0.5rem;
+            }
+
+            .gallery-image-title {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.8rem;
+                bottom: 0.5rem;
+            }
+
             .gallery-controls {
                 padding: 0.8rem;
             }
@@ -1553,6 +1676,10 @@
             .dot {
                 width: 10px;
                 height: 10px;
+            }
+
+            .gallery-container {
+                padding-bottom: 100%; /* Más cuadrado en móviles pequeños */
             }
         }
 
@@ -1813,6 +1940,8 @@
                     <img src="https://i.pinimg.com/736x/ec/ac/4e/ecac4e6f81868a79b1a15fcc77fe39e9.jpg" alt="EKO Distrito">
                     <div class="project-type-badge">PROPIO</div>
                     <div class="project-status status-pozo">EN POZO</div>
+                    <div class="project-sale-badge">🏷️ EN VENTA</div>
+                    <div class="project-delivery-badge">📅 Entrega Ago/Sep</div>
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">EKO Distrito</h3>
@@ -1974,6 +2103,10 @@
             <i class="fas fa-times"></i>
         </button>
         
+        <div class="gallery-header">
+            <h2 class="gallery-title" id="galleryProjectTitle">EKO Distrito - Galería</h2>
+        </div>
+        
         <div class="gallery-container">
             <div class="gallery-images" id="galleryImages">
                 <!-- Las imágenes se insertan aquí con JavaScript -->
@@ -2058,10 +2191,10 @@
             </div>
 
             <div class="details-actions">
-                <a href="brochure-eko.pdf" download="Brochure_EKO_Distrito.pdf" class="details-btn details-btn-primary" target="_blank">
+                <button onclick="downloadBrochure()" class="details-btn details-btn-primary">
                     <i class="fas fa-file-download"></i>
                     Descargar Brochure
-                </a>
+                </button>
                 <a href="https://wa.me/5493872233151?text=Hola,%20estoy%20interesado%20en%20el%20proyecto%20EKO%20Distrito" target="_blank" class="details-btn details-btn-secondary">
                     <i class="fab fa-whatsapp"></i>
                     Consultar por WhatsApp
@@ -2204,15 +2337,32 @@
     });
 
     // ========== MODAL GALLERY ==========
-    // Imágenes de EKO Distrito
-    const projectImages = {
-        'EKO Distrito': [
-            'https://i.pinimg.com/736x/08/f2/c1/08f2c1b41a7a647b65de448520384a7c.jpg',
-            'https://i.pinimg.com/736x/ec/ac/4e/ecac4e6f81868a79b1a15fcc77fe39e9.jpg',
-            'https://i.pinimg.com/736x/a2/43/3a/a2433aad825e17d367a71e62e5c36868.jpg',
-            'https://i.pinimg.com/736x/61/bc/94/61bc949c21d240463f2cfe52621ca556.jpg',
-            'https://i.pinimg.com/736x/3e/35/d6/3e35d61f505592db45431ef4f0310c82.jpg'
-        ]
+    // Imágenes de EKO Distrito con títulos
+    const projectGalleryData = {
+        'EKO Distrito': {
+            images: [
+                {
+                    url: 'https://i.pinimg.com/736x/08/f2/c1/08f2c1b41a7a647b65de448520384a7c.jpg',
+                    title: 'Fachada Principal - Vista Frontal'
+                },
+                {
+                    url: 'https://i.pinimg.com/736x/ec/ac/4e/ecac4e6f81868a79b1a15fcc77fe39e9.jpg',
+                    title: 'Vista Aérea del Complejo'
+                },
+                {
+                    url: 'https://i.pinimg.com/736x/a2/43/3a/a2433aad825e17d367a71e62e5c36868.jpg',
+                    title: 'Jardín y Espacio Exterior'
+                },
+                {
+                    url: 'https://i.pinimg.com/736x/61/bc/94/61bc949c21d240463f2cfe52621ca556.jpg',
+                    title: 'Diseño Interior - Living Comedor'
+                },
+                {
+                    url: 'https://i.pinimg.com/736x/3e/35/d6/3e35d61f505592db45431ef4f0310c82.jpg',
+                    title: 'Vista Nocturna con Iluminación'
+                }
+            ]
+        }
     };
 
     let currentGalleryIndex = 0;
@@ -2224,16 +2374,22 @@
         currentGalleryIndex = 0;
         
         // Obtener imágenes del proyecto
-        const images = projectImages[currentProjectName] || [];
+        const galleryData = projectGalleryData[currentProjectName];
+        if (!galleryData) return;
         
-        // Crear elementos de imagen
+        const images = galleryData.images;
+        
+        // Crear elementos de imagen con títulos
         const galleryImagesContainer = document.getElementById('galleryImages');
         galleryImagesContainer.innerHTML = '';
         
-        images.forEach((img) => {
+        images.forEach((imgData) => {
             const imageDiv = document.createElement('div');
             imageDiv.className = 'gallery-image';
-            imageDiv.innerHTML = `<img src="${img}" alt="${currentProjectName}">`;
+            imageDiv.innerHTML = `
+                <img src="${imgData.url}" alt="${imgData.title}">
+                <div class="gallery-image-title">${imgData.title}</div>
+            `;
             galleryImagesContainer.appendChild(imageDiv);
         });
         
@@ -2253,6 +2409,7 @@
         
         // Mostrar modal
         document.getElementById('modalGallery').classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevenir scroll del body
     }
 
     // Actualizar posición del carrusel
@@ -2293,31 +2450,48 @@
     // Cerrar galería
     document.getElementById('closeGallery').addEventListener('click', () => {
         document.getElementById('modalGallery').classList.remove('active');
+        document.body.style.overflow = ''; // Restaurar scroll del body
     });
 
     // Cerrar galería al hacer clic en el fondo
     document.getElementById('modalGallery').addEventListener('click', (e) => {
         if (e.target.id === 'modalGallery') {
             document.getElementById('modalGallery').classList.remove('active');
+            document.body.style.overflow = '';
         }
     });
 
     // ========== MODAL DETALLES ==========
     function openDetailsModal() {
         document.getElementById('modalDetails').classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
     // Cerrar modal de detalles
     document.getElementById('closeDetails').addEventListener('click', () => {
         document.getElementById('modalDetails').classList.remove('active');
+        document.body.style.overflow = '';
     });
 
     // Cerrar modal al hacer clic en el fondo
     document.getElementById('modalDetails').addEventListener('click', (e) => {
         if (e.target.id === 'modalDetails') {
             document.getElementById('modalDetails').classList.remove('active');
+            document.body.style.overflow = '';
         }
     });
+
+    // Función para descargar el brochure
+    function downloadBrochure() {
+        // Crear un enlace temporal para forzar la descarga
+        const link = document.createElement('a');
+        link.href = 'brochure-eko.pdf';
+        link.download = 'Brochure_EKO_Distrito.pdf';
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 
     // Navegar con teclas de flecha
     document.addEventListener('keydown', (e) => {
